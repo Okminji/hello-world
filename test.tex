@@ -1,0 +1,1287 @@
+\documentclass[12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{url}
+\usepackage{float}
+\usepackage{subcaption}
+\titleformat{\chapter}[display]{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+% Cover Vietnamese 1
+
+% Cover Vietnamese 1
+
+% Cover english
+\pagenumbering{gobble}
+\begin{center}
+	
+	\begin{tikzpicture}[overlay,remember picture]
+	\draw [line width=3pt,rounded corners=0pt,
+	]
+	($ (current page.north west) + (25mm,-25mm) $)
+	rectangle
+	($ (current page.south east) + (-15mm,25mm) $);
+	\draw [line width=1pt,rounded corners=0pt]
+	($ (current page.north west) + (26.5mm,-26.5mm) $)
+	rectangle
+	($ (current page.south east) + (-16.5mm,26.5mm) $);
+	\end{tikzpicture}
+	\\[1mm]
+	\textbf{TRƯỜNG ĐẠI HỌC GIAO THÔNG VẬN TẢI}
+	\\[1cm]
+	\includegraphics[width=0.2\linewidth]{Img/utc.png}
+	\\[0.3cm]
+	\textbf{Nguyễn Anh Đức}
+	\\[2cm]
+	
+	\large{\textbf{XÂY DỰNG HỆ THỐNG THAY THẾ VÀ LẤP ĐẦY HÌNH ẢNH}}
+	\\[2.6cm]
+	\normalsize{\textbf{KHÓA LUẬN TỐT NGHIỆP ĐẠI HỌC HỆ CHÍNH QUY
+		\\[2mm]
+	Ngành: Công nghệ thông tin}}
+\end{center}
+\vspace{16mm}
+\hspace*{8mm}\textbf{ Cán bộ hướng dẫn: TS. Nguyễn Quốc Tuấn}\\[0.8cm]
+\vfill
+\begin{center}
+	\textbf{HÀ NỘI - 2022}
+	\vspace{10mm}
+\end{center}
+
+
+\begin{center}
+	
+	\begin{tikzpicture}[overlay,remember picture]
+	\draw [line width=3pt,rounded corners=0pt,
+	]
+	($ (current page.north west) + (25mm,-25mm) $)
+	rectangle
+	($ (current page.south east) + (-15mm,25mm) $);
+	\draw [line width=1pt,rounded corners=0pt]
+	($ (current page.north west) + (26.5mm,-26.5mm) $)
+	rectangle
+	($ (current page.south east) + (-16.5mm,26.5mm) $);
+	\end{tikzpicture}
+	\\[1mm]
+	\textbf{ UNIVERSITY OF TRANSPORT AND COMMUNICATION}
+	\\[1cm]
+	\includegraphics[width=0.2\linewidth]{Img/utc.png}
+	\\[0.3cm]
+	\textbf{Nguyễn Anh Đức}
+	\\[2cm]
+	
+	\textbf{DESIGN AND BUILD FURNITURE SALES WEBSITE}
+	\\[2.6cm]
+	\textbf{BUILDING A REPLACEMENT AND FILLING SYSTEM IMAGE
+		\\[2mm]
+		Major: Information Technology}
+\end{center}
+\vspace{16mm}
+\hspace*{8mm}\textbf{ Supervisor: Dr. Nguyễn Quốc Tuấn}\\[0.8cm]
+\vfill
+\begin{center}
+	\textbf{HANOI - 2022}
+	\vspace{4mm}
+\end{center}
+
+\chapter*{LỜI CẢM ƠN}
+\addcontentsline{toc}{chapter}{LỜI CẢM ƠN}
+	\pagenumbering{roman}
+Trước tiên, em xin gửi lời cảm ơn chân thành tới thầy TS. Nguyễn Quốc Tuấn đã tận tình hướng dẫn, chỉ bảo và động viên em trong suốt quá trình thực hiện tốt luận án tốt nghiệp. Em cũng xin cảm ơn các thầy cô trong khoa Công nghệ thông tin, Trường Đại học Giao thông Vận tải đã truyền đạt cho em kiến thức trong suốt quá trình học tập tại trường.\\
+Em xin chân thành cảm ơn!
+
+\chapter*{TÓM TẮT}
+\addcontentsline{toc}{chapter}{TÓM TẮT}
+
+Luạn án trình bày quá trình nghiên cứu và xây dựng hệ thống thay thế và lấp đầy hình ảnh dựa trên các công nghệ học máy hiện đại. Hệ thống sử dụng các mô hình tiên tiến như Segment Anything Model (SAM), LaMa và Stable Diffusion để tự động phát hiện, xóa và thay thế các vùng ảnh theo yêu cầu. Kết quả thực nghiệm cho thấy hệ thống có khả năng xử lý hiệu quả nhiều trường hợp khác nhau, hỗ trợ người dùng chỉnh sửa ảnh nhanh chóng và thuận tiện. Luận án cũng đề xuất một số hướng phát triển nhằm nâng cao chất lượng và mở rộng ứng dụng của hệ thống trong tương lai.
+
+\addcontentsline{toc}{chapter}{MỤC LỤC}
+\tableofcontents
+\clearpage
+\addcontentsline{toc}{chapter}{DANH MỤC HÌNH VẼ}
+\listoffigures
+\addcontentsline{toc}{chapter}{DANH MỤC BẢNG BIỂU}
+\listoftables     
+\chapter*{DANH MỤC TỪ VIẾT TẮT}
+\addcontentsline{toc}{chapter}{DANH MỤC TỪ VIẾT TẮT}
+\begin{table}[H]
+\centering
+\caption{Danh mục từ viết tắt sử dụng trong luận văn}
+\begin{tabular}{|l|l|}
+    \hline
+    \textbf{Từ viết tắt} & \textbf{Tiếng Anh} \\
+    \hline
+    AI    & Artificial Intelligence \\
+    ML    & Machine Learning \\
+    DL    & Deep Learning \\
+    ANN   & Artificial Neural Network \\
+    CNN   & Convolutional Neural Network \\
+    GAN   & Generative Adversarial Network \\
+    ViT   & Vision Transformer \\
+    AGI   & Artificial General Intelligence \\
+    OCR   & Optical Character Recognition \\
+    MLP   & Multi-Layer Perceptron \\
+    SVM   & Support Vector Machine \\
+    RNN   & Recurrent Neural Network \\
+    LSTM  & Long Short-Term Memory \\
+    BiLSTM& Bidirectional Long Short-Term Memory \\
+    FC    & Fully Connected \\
+    FFC   & Fast Fourier Convolution \\
+    MAE   & Masked Auto-Encoder \\
+    CLIP  & Contrastive Language–Image Pretraining \\
+    IoU   & Intersection over Union \\
+    DAE   & Denoising Autoencoder \\
+    VAE   & Variational Autoencoder \\
+    SR3   & Super-Resolution via Repeated Refinement \\
+    GIMP  & GNU Image Manipulation Program \\
+    GPU   & Graphics Processing Unit \\
+    \hline
+\end{tabular}
+\end{table}
+
+\chapter*{MỞ ĐẦU}
+	\pagenumbering{arabic}
+\addcontentsline{toc}{chapter}{MỞ ĐẦU}
+
+Trong thời đại công nghệ số phát triển mạnh mẽ, nhu cầu chỉnh sửa, phục hồi và sáng tạo hình ảnh ngày càng trở nên phổ biến trong nhiều lĩnh vực như truyền thông, y tế, giải trí và nghiên cứu khoa học. Các kỹ thuật thay thế và lấp đầy hình ảnh (image inpainting) đóng vai trò quan trọng trong việc nâng cao chất lượng hình ảnh, loại bỏ các đối tượng không mong muốn hoặc phục hồi các vùng bị hư hỏng. Sự phát triển của các mô hình học máy và học sâu đã mở ra nhiều hướng tiếp cận mới, giúp tự động hóa và tối ưu hóa quá trình xử lý ảnh.
+
+Xuất phát từ thực tiễn đó, khóa luận này tập trung nghiên cứu, ứng dụng các công nghệ hiện đại để xây dựng hệ thống thay thế và lấp đầy hình ảnh tự động. Hệ thống được thiết kế nhằm hỗ trợ người dùng thực hiện các thao tác chỉnh sửa ảnh một cách dễ dàng, nhanh chóng và hiệu quả, đồng thời tạo tiền đề cho các nghiên cứu và ứng dụng sâu hơn trong lĩnh vực xử lý ảnh số.
+
+\chapter{GIỚI THIỆU BÀI TOÁN THAY THẾ VÀ LẤP ĐẦY HÌNH ẢNH}
+
+\section{Giới thiệu bài toán thay thế và lấp đầy hình ảnh}
+
+\subsection{Lịch sử của việc xử lý ảnh bằng học máy}
+
+Xử lý ảnh[18] là một lĩnh vực liên ngành nằm ở giao điểm của khoa học máy tính, kỹ thuật điện tử và toán học. Từ những năm 1960, xử lý ảnh số đã trở thành một lĩnh vực nghiên cứu quan trọng với nhiều ứng dụng thực tiễn. Việc xử lý ảnh bao gồm các kỹ thuật từ cơ bản như lọc, phát hiện biên đến các kỹ thuật phức tạp như phân loại, nhận diện và tái tạo ảnh.
+
+\subsubsection{Giai đoạn đầu (1960 – 1990)}
+
+Thập kỷ 1960 – 1970: Các nghiên cứu đầu tiên về xử lý ảnh số bắt đầu với việc phát triển các thuật toán lọc cơ bản, biến đổi Fourier và các kỹ thuật phát hiện biên. Các ứng dụng ban đầu chủ yếu tập trung vào việc cải thiện chất lượng ảnh y tế và hình ảnh vệ tinh.\\
+Thập kỷ 1980: Kỷ nguyên của các thuật toán dựa trên kỹ thuật nhận dạng mẫu và xử lý tín hiệu số[22]. Những thuật toán này được áp dụng trong nhận dạng ký tự quang học (OCR), phân loại ảnh và phục hồi ảnh. Những bước tiến đáng kể trong phân loại và trích xuất đặc trưng ảnh đã đặt nền tảng cho các nghiên cứu sau này.
+
+\subsubsection{Sự xuất hiện của học máy – Machine Learning (1990 - 2000)}
+Thập kỷ 1990: Sự phát triển của mạng neural nhân tạo (ANN – Artificial Neural Network)[23] đã mở ra một kỷ nguyên mới cho xử lý ảnh. Mặc dù còn nhiều hạn chế về tài nguyên tính toán và dữ liệu huấn luyện, ANN đã chứng tỏ khả năng mạnh mẽ trong việc nhận diện mẫu và phân loại ảnh. Các ứng dụng quan trọng bao gồm OCR, nhận diện khuôn mặt và phân loại đối tượng.
+
+\subsubsection{Sự bùng nổ của học sâu – Deep Learning (2000 – 2010)}
+ Thập kỷ 2000: Với sự phát triển của phần cứng tính toán và các kỹ thuật tối ưu hóa, mạng neural tích chập (CNN - Convolutional Neural Networks) đã ra đời[28]. Các mô hình CNN như LeNet, AlexNet đã đạt được những thành công đáng kể trong các cuộc thi về xử lý ảnh, đặc biệt là ImageNet. Các kỹ thuật trích xuất đặc trưng như ‘Biến đổi tính năng bất biến tỉ lệ (SIFT - Scale-Invariant Feature Transform)’ và ‘Tăng tốc các tính năng mạnh mẽ (SURF - Speeded Up Robust Feature)’[27] đã giúp cải thiện đáng kể độ chính xác trong các nhiệm vụ nhận dạng và theo dõi đối tượng.
+
+\subsubsection{Kỷ nguyên của mạng đối sinh và học sâu (2010 – 2020)}
+Thập kỷ 2010: Học sâu trở thành xu hướng chủ đạo trong xử lý ảnh. Các mô hình neural tích chập phức tạp như VGG[27], ResNet[28], Inception đạt được những tiến bộ vượt bậc trong nhận dạng và phân loại ảnh. Mạng đối sinh (GAN - Generative Adversarial Networks) do Ian Goodfellow giới thiệu đã mở ra một hướng nghiên cứu mới với khả năng tạo ra các hình ảnh chân thực từ dữ liệu ngẫu nhiên[30]. Các mô hình như CycleGAN, DeepFill đã chứng minh khả năng mạnh mẽ trong việc tái tạo và lấp đầy hình ảnh.
+
+\subsubsection{Xu hướng hiện tại và tương lai (2020 – Nay)}
+Thập kỷ 2020: Các mô hình transformer như Vision Transformer[11] (ViT) đang trở thành xu hướng mới trong xử lý ảnh. Các mô hình này đã đạt được những kết quả ấn tượng trong nhiều nhiệm vụ xử lý ảnh, từ phân loại, nhận diện đến lấp đầy hình ảnh. Sự phát triển của trí tuệ nhân tạo tổng hợp (AGI - Artificial General Intelligence)[23] hứa hẹn sẽ mang lại những bước tiến vượt bậc trong xử lý ảnh, với khả năng tự động học và cải thiện từ dữ liệu mới.
+
+\subsection{Thay thế và lấp đầy hình ảnh}
+
+Thay thế và lấp đầy hình ảnh[14] là những kỹ thuật quan trọng trong xử lý ảnh số, nhằm mục đích cải thiện chất lượng hình ảnh hoặc tạo ra những hình ảnh mới từ dữ liệu hiện có. Những kỹ thuật này được ứng dụng rộng rãi trong nhiều lĩnh vực, từ chỉnh sửa ảnh cá nhân đến y tế và truyền thông[19].
+
+\subsubsection{Thay thế hình ảnh}
+
+Thay thế hình ảnh là quá trình thay thế một phần của hình ảnh bằng một phần khác, có thể từ cùng một hình ảnh hoặc từ một nguồn khác. Kỹ thuật này thường được sử dụng trong việc chỉnh sửa ảnh, loại bỏ các đối tượng không mong muốn hoặc thay đổi nền.
+\\Kỹ thuật chỉnh sửa nền được sử dụng để thay đổi nền của ảnh, đặc biệt hữu ích trong nhiếp ảnh và điện ảnh[13]. Các công cụ như chroma key (màn hình xanh) cho phép dễ dàng thay thế nền trong quá trình hậu kỳ. Bên cạnh đó, loại bỏ đối tượng cũng là một ứng dụng phổ biến của kỹ thuật thay thế hình ảnh, giúp loại bỏ các đối tượng không mong muốn khỏi ảnh. Các thuật toán như PatchMatch cho phép tìm kiếm các vùng tương tự trong ảnh để thay thế hiệu quả các đối tượng cần loại bỏ.
+
+\subsubsection{Lấp đầy hình ảnh (Inpainting)}
+
+Lấp đầy hình ảnh là kỹ thuật lấp đầy các vùng bị thiếu hoặc bị hư hỏng trong ảnh. Kỹ thuật này có thể được áp dụng trong nhiều ngữ cảnh, từ phục hồi ảnh cũ đến tái tạo các chi tiết bị mất trong quá trình chụp ảnh.
+\\Các phương pháp thay thế và lấp đầy hình ảnh bao gồm cả kỹ thuật truyền thống và hiện đại. Phương pháp truyền thống thường sử dụng nội suy và tìm kiếm các mẫu tương tự trong ảnh để tái tạo các vùng bị che khuất. Trong khi đó, các mô hình mạng đối sinh (GAN) như DeepFill[13] hay Contextual Attention GAN[15] học từ một lượng lớn dữ liệu huấn luyện và có khả năng tái tạo các vùng bị thiếu một cách tự nhiên và hợp ngữ cảnh. Gần đây, các thuật toán hiện đại như Stable Diffusion và các mô hình dựa trên transformer đang ngày càng phổ biến nhờ hiệu quả và chất lượng tái tạo ảnh vượt trội.
+
+\subsubsection{Một số ứng dụng của thay thế và lấp đầy hình ảnh}
+
+Thay thế và lấp đầy hình ảnh có nhiều ứng dụng trong thực tế, mang lại nhiều lợi ích và tiện ích cho người dùng trong nhiều lĩnh vực khác nhau.
+
+\textbf{Chỉnh sửa ảnh cá nhân}
+Các ứng dụng chỉnh sửa ảnh như Adobe Photoshop và GIMP sử dụng kỹ thuật thay thế và lấp đầy hình ảnh để giúp người dùng dễ dàng loại bỏ các đối tượng không mong muốn, thay đổi nền hoặc cải thiện chất lượng ảnh, qua đó tạo ra những bức ảnh hoàn hảo chỉ với vài thao tác đơn giản. Bên cạnh đó, các ứng dụng di động như Snapseed, PicsArt và Lightroom Mobile cũng tích hợp các thuật toán mạnh mẽ để mang lại khả năng chỉnh sửa linh hoạt và hiệu quả ngay trên thiết bị di động.\\
+
+\textbf{Phục hồi ảnh cổ}
+Trong lĩnh vực phục hồi ảnh cổ, kỹ thuật lấp đầy hình ảnh được ứng dụng để tái tạo lại các chi tiết bị mất do ảnh hưởng của thời gian, môi trường hoặc các yếu tố vật lý, giúp các bức ảnh cũ trở nên rõ nét và sống động hơn[15]. Ngoài ra, các công nghệ này còn đóng vai trò quan trọng trong việc bảo tồn di sản văn hóa bằng cách khôi phục các tác phẩm nghệ thuật và tài liệu lịch sử, từ đó góp phần lưu giữ giá trị lịch sử cho các thế hệ tương lai.\\
+
+\textbf{Điện ảnh và truyền hình}
+Trong sản xuất phim và truyền hình, kỹ thuật thay thế và lấp đầy hình ảnh được sử dụng rộng rãi để tạo ra các hiệu ứng đặc biệt, chỉnh sửa cảnh quay, cũng như loại bỏ các yếu tố không mong muốn khỏi khung hình. Những công nghệ này không chỉ nâng cao chất lượng hình ảnh mà còn tối ưu hóa quy trình sản xuất nội dung, giúp tiết kiệm thời gian và chi phí trong khâu hậu kỳ.\\
+
+\textbf{Y học}
+Trong lĩnh vực y tế, kỹ thuật lấp đầy hình ảnh đóng vai trò quan trọng trong việc tái tạo các hình ảnh y khoa bị thiếu hoặc hư hỏng, từ đó cải thiện chất lượng chẩn đoán và hỗ trợ các bác sĩ trong việc phát hiện cũng như điều trị bệnh. Đồng thời, các công cụ này còn được ứng dụng trong nghiên cứu y khoa nhằm phân tích và phục dựng các hình ảnh từ thí nghiệm, góp phần nâng cao hiệu quả của quá trình nghiên cứu và phát triển.\\
+
+\textbf{Bảo mật và giám sát}
+Trong lĩnh vực bảo mật, kỹ thuật lấp đầy hình ảnh giúp cải thiện khả năng phân tích và tái tạo hình ảnh giám sát, hỗ trợ việc nhận diện và theo dõi các đối tượng quan trọng trong môi trường an ninh cao. Đồng thời, công nghệ này còn giúp phục hồi các hình ảnh bị hư hỏng hoặc mất mát trong quá trình giám sát[19], góp phần nâng cao độ tin cậy và hiệu quả của hệ thống an ninh.\\
+
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/1.png}
+    \caption{Sử dụng xử lý ảnh để tạo ra các ảnh riêng biệt khác}
+    \label{fig:1.2}
+\end{figure}
+\vspace{0.5em}
+
+
+\section{Các dự án liên quan}
+
+Thay thế và lấp đầy hình ảnh nói riêng hay xử lý ảnh nói chung được thực hiện theo quy trình gồm các bước cơ bản sau:
+
+\begin{itemize}
+    \item \textbf{Bước 1:} Chuẩn bị: Đưa hình ảnh lên hệ thống.
+    \item \textbf{Bước 2:} Tiền xử lý hình ảnh: Trước khi thực hiện thay thế và lấp đầy, hình ảnh cần được tiền xử lý để chuẩn bị cho quá trình xử lý sau. Các bước tiền xử lý có thể bao gồm làm sạch hình ảnh, điều chỉnh độ sáng, tăng cường độ tương phản, loại bỏ nhiễu, và thay đổi kích thước hình ảnh[28].
+    \item \textbf{Bước 3:} Phát hiện vùng cần thay thế/lấp đầy: Sau khi tiền xử lý, các vùng cần thay thế hoặc lấp đầy trên hình ảnh cần được xác định. Điều này có thể được thực hiện bằng các thuật toán phát hiện vật thể hoặc phát hiện biên[12].
+    \item \textbf{Bước 4:} Xác định nội dung thay thế/lấp đầy: Nội dung mới cần được chèn vào vị trí của các vùng đã được xác định trong bước trước. Điều này có thể bao gồm sao chép nội dung từ các vùng khác trong hình ảnh hoặc tạo ra nội dung mới dựa trên một mẫu được định sẵn.
+    \item \textbf{Bước 5:} Hợp nhất và tinh chỉnh: Cuối cùng, các vùng đã thay thế hoặc lấp đầy sẽ được hợp nhất lại với hình ảnh gốc và thực hiện các bước tinh chỉnh như điều chỉnh màu sắc, độ tương phản, hoặc làm mịn để làm cho hình ảnh trông tự nhiên hơn[19]
+\end{itemize}
+Như phần trước đã đề cập, để xây dựng một hệ thống hoàn chỉnh từ việc định dạng và chuẩn hóa hình ảnh, phát hiện các vật thể và biên của đối tượng cho đến tinh chỉnh hình ảnh nhằm thay thế theo yêu cầu, cần lần lượt giải quyết ba nội dung chính. Trước khi tổng hợp thành một hệ thống hoàn chỉnh, mỗi nội dung sẽ được coi là một bài toán nhỏ được nghiên cứu và thử nghiệm độc lập. Cụ thể, đầu tiên là việc chuyển đổi hình ảnh vào định dạng phù hợp và chuẩn hóa chúng nhằm đảm bảo tính nhất quán trong quá trình xử lý. Tiếp theo, các thuật toán phát hiện biên và đối tượng được sử dụng để xác định chính xác các vùng cần thay thế hoặc lấp đầy trên hình ảnh. Cuối cùng, các thuật toán tự động sẽ được áp dụng để lựa chọn và chèn nội dung thay thế một cách phù hợp, dựa trên ngữ cảnh và đặc điểm cụ thể của vùng cần xử lý.
+
+Trong nội dung thứ nhất là chuyển đổi hình ảnh về định dạng phù hợp và chuẩn hóa hình ảnh để đảm bảo tính nhất quán trong quá trình xử lý. Quá trình này bao gồm việc điều chỉnh kích thước, định dạng pixel, độ sáng/tối và giảm độ mờ của ảnh[6]. Công việc này có thể gặp khó khăn với những hình ảnh có chất lượng thấp, biến dạng không đồng đều, hoặc nhiễu. Đặc biệt, trong các ứng dụng thời gian thực, việc xử lý ảnh nhanh chóng có thể là một thách thức lớn.
+
+Với bài toán định dạng lại hình ảnh, đã có nhiều nghiên cứu, sử dụng nhiều phương pháp khác nhau. Dưới đây là các công trình nghiên cứu đã có về vấn đề chuyển đổi hình ảnh về đúng định dạng xử lý. Bảng khảo sát được viết theo thứ tự từ cũ đến mới.
+
+\vspace{1em}
+
+\begin{table}[H]
+\centering
+\caption{Summary of notable works in image processing}
+\begin{tabular}{|c|p{6cm}|p{5cm}|}
+    \hline
+    \textbf{Năm} & \textbf{Công trình} & \textbf{Tác giả} \\
+    \hline
+    2012 & ImageNet Classification with Deep Convolutional Neural Networks [1] & Alex Krizhevsky et al. \\
+    \hline
+    2015 & Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift [2] & Sergey Ioffe và Christian Szegedy \\
+    \hline
+    2017 & Pix2Pix: Image-to-Image Translation with Conditional Adversarial Networks [3] & Phillip Isola et al. \\
+    \hline
+    2019 & SinGAN: Learning a Generative Model from a Single Natural Image [4] & Tamar Rott Shaham et al. \\
+    \hline
+    2020 & DualGAN: Unsupervised Dual Learning for Image-to-Image Translation [5] & Zili Yi et al. \\
+    \hline
+\end{tabular}
+\label{tab:image_processing_works}
+\end{table}
+
+\vspace{1em}
+
+Trong nội dung thứ hai sẽ nghiên cứu tạo ra các mô hình (model) học máy sử dụng các thuật toán phát hiện biên và đối tượng để xác định các vùng cần thay thế hoặc lấp đầy trên hình ảnh. Giống như nội dung thứ nhất, quá trình này sẽ trở nên khó khăn đối với các hình ảnh với chất lượng thấp, điều kiện ánh sáng yếu, ảnh nền phức tạp hoặc với các đối tượng có kích thước nhỏ. Đặc biệt, việc xử lý ảnh chứa nhiễu cũng là một thách thức đối với các thuật toán phát hiện đối tượng.
+
+Với bài toán nhận dạng các vùng biên và in ra ảnh mặt nạ (Mask Image) cũng đã có nhiều nghiên cứu được công bố, sử dụng nhiều phương pháp khác nhau. Dưới đây là các công trình nghiên cứu đã được công bố.
+
+\vspace{1em}
+
+\begin{table}[H]
+\begin{flushleft}
+\caption{Summary of notable works in object detection}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|p{6cm}|p{5cm}|p{5cm}|}
+    \hline
+    \textbf{Năm} & \textbf{Công trình} & \textbf{Tác giả} & \textbf{Nhận xét} \\
+    \hline
+    2015 & Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks [6] & Shaoqing Ren et al. & Đòi hỏi tài nguyên tính toán cao và thời gian huấn luyện lâu dài. \\
+    \hline
+    2016 & You Only Look Once: Unified, Real-Time Object Detection [7] & Joseph Redmon và Santosh Divvala & Tính toán tăng lên có thể làm giảm hiệu suất khi áp dụng vào các hệ thống thời gian thực. \\
+    \hline
+    2017 & Region-based Convolutional Neural Network [8] & Joseph Redmon et al. & Yêu cầu thời gian tính toán lớn, không phù hợp cho các hệ thống thời gian thực. \\
+    \hline
+    2018 & You Only Look Once version 3 [9] & Ross Girshick, Jeff Donahue, Trevor Darrell và Jitendra Malik & Có thể gặp khó khăn khi phát hiện các đối tượng nhỏ hoặc mờ trong ảnh. \\
+    \hline
+    2019 & CenterNet: Keypoint Triplets for Object Detection [10] & Hei Law et al. & Đòi hỏi một lượng lớn dữ liệu huấn luyện và tài nguyên tính toán cao. \\
+    \hline
+    2021 & PAA: Progressive Anchor-free Object Detection [11] & Zhi Tian et al. & Có thể gặp khó khăn trong việc phát hiện các đối tượng có kích thước nhỏ hoặc mờ trong ảnh. \\
+    \hline
+    2023 & Segment Anything Model (SAM) [12] & META & Có thể gặp khó khăn khi áp dụng vào các bài toán phức tạp và đa dạng. \\
+    \hline
+\end{tabular}%
+}
+\label{tab:object_detection_works}
+\end{flushleft}
+\end{table}
+
+Vì là một chủ đề được nhiều người chú ý đến nên số lượng dự án được thực hiện dựa theo ý tưởng này là không ít. Tuy có nhiều thay đổi giữa các mô hình khác nhau tuy nhiên những vấn đề cố hữu như kích thước vật thể hay độ mờ của hình ảnh vẫn là những bài toán khó có thể xử lý.
+
+Trong nội dung thứ ba sẽ tiến hành việc áp dụng các thuật toán tự động để chọn lựa và chèn nội dung thay thế dựa trên ngữ cảnh và tính chất của vùng cần lấp đầy. Đây là một phần quan trọng của quá trình và cũng là quá trình khó khăn và phức tạp nhất. Đầu vào cho mô hình này chính là ảnh gốc và ảnh mặt nạ (Mask Image) được tạo ra sau quá trình xử lý của nội dung thứ hai đề cập ở trên. Với độ phức tạp của bài toán, quá trình cuối cùng này có rất nhiều các khó khăn có thể đề cập đến. 
+
+Đối với xử lý hình ảnh nói chung, những vấn đề cố hữu như độ nét, ánh sáng vẫn còn hiện hữu đi cùng với các khó khăn mới như việc lựa chọn hình ảnh thay thế phù hợp với ảnh gốc và ảnh mặt nạ hay việc đọc các vector từ ảnh gốc rồi đưa vào chỗ cần thay thế. Đối với các mô hình thay thế hình ảnh, việc đọc được ngữ cảnh đưa vào cũng có thể coi là một bài toán nhỏ cần phải xử lý.
+
+Phương pháp được áp dụng nhiều nhất là \textit{embedding}, một kỹ thuật đưa vector có số chiều lớn, thường ở dạng thưa, về một vector có số chiều nhỏ, thường ở dạng dày đặc. Chuyển hóa các ngữ cảnh đưa vào thành dạng vector và tìm ra các hình ảnh có vector tương đối giống để lấp đầy vào chỗ trống là hướng đi mà đa số các mô hình áp dụng.
+
+Là một bài toán mới được đề ra sau khi đạt tới mức nhất định trong sự phát triển của công nghệ nên số lượng công trình nghiên cứu toàn cảnh vẫn còn hạn chế và đa số các công trình đều về việc xử lý gương mặt, tuy nhiên dưới đây là một số mô hình được công bố với kết quả nhất định.
+
+\vspace{1em}
+
+\begin{table}[H]
+\begin{minipage}{\textwidth}
+\raggedright
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|c|p{6cm}|p{5cm}|p{5cm}|}
+    \hline
+    \textbf{Năm} & \textbf{Công trình} & \textbf{Tác giả} & \textbf{Nhận xét} \\
+    \hline
+    2018 & Deepfill v1: Learning the Image Inpainting [13] & Jiahui Yu et al. & Có thể gặp khó khăn trong việc tái tạo các chi tiết phức tạp trong hình ảnh. \\
+    \hline
+    2019 & SC-FEGAN: Face Editing GAN with Users Sketch and Color [14] & JaeHyun Gu et al. & Cần sự chính xác cao trong việc xử lý và kết hợp các yếu tố màu sắc và đường nét. \\
+    \hline
+    2019 & EdgeConnect: Generative Image Inpainting with Adversarial Edge Learning [15] & Kamyar Nazeri et al. & Đòi hỏi dữ liệu đầu vào phải chứa đủ thông tin về các cạnh và đường biên. \\
+    \hline
+    2019 & GANimation: Anatomically Aware Facial Animation [16] & Shuyang Gu et al. & Có thể gặp khó khăn trong việc xử lý các biểu cảm khuôn mặt phức tạp. \\
+    \hline
+    2020 & DeepFaceDrawing: Deep Generation of Face Images from Sketches [17] & Yadong Mu et al. & Đòi hỏi dữ liệu đầu vào phải là các bản vẽ khuôn mặt chất lượng cao. \\
+    \hline
+    2020 & Avatarify: Neural Avatars for Video Conferencing [18] & Aliaksandr Siarohin et al. & Có thể gặp khó khăn trong việc ánh xạ các biểu cảm khuôn mặt chính xác. \\
+    \hline
+    2020 & Diffusion [19] & Xin Li et al. & Có thể cần tinh chỉnh thêm để đảm bảo tính ổn định và hiệu quả của quá trình lấp đầy. \\
+    \hline
+\end{tabular}%
+}
+\caption{Những công trình về bài toán thay thế và lấp đầy hình ảnh}
+\label{tab:image_inpainting_works}
+\end{minipage}
+\end{table}
+
+\vspace{1em}
+
+Có thể thấy, là một vấn đề quan trọng và nhiều người chú ý tuy nhiên các bài nghiên cứu đa số đều chỉ hướng đến việc tạo ra khuôn mặt hoặc một phần khuôn mặt. Để nói về các nghiên cứu có khả năng thay thế hình ảnh với không giới hạn ta có thể đề cập đến EdgeConnect, GAN và Diffusion trong đó nổi bật nhất là Diffusion với nhiều phát triển khác nhau như Stable Diffusion, Inpainting Diffusion, \ldots Và dù ra mắt từ 2020, đến ngày hôm nay những mô hình trên vẫn còn được phát triển nhằm xử lý những vấn đề cố hữu còn tồn đọng.
+
+\section{Kết luận}
+
+Việc thay thế và lấp đầy hình ảnh là một phần quan trọng của nhiều ứng dụng trong lĩnh vực xử lý ảnh, từ tái tạo hình ảnh hỏng hoặc bị mất đến tạo ra hình ảnh nhân tạo. Tuy nhiên, trong quá trình này, chúng ta phải đối mặt với một loạt các thách thức và hạn chế, cần được xem xét một cách cẩn thận và chi tiết.
+
+Một trong những thách thức lớn nhất là đa dạng và phức tạp của dữ liệu. Hình ảnh có thể chứa các đối tượng có kích thước, hình dáng và màu sắc khác nhau, cũng như các điều kiện ánh sáng và bối cảnh khác nhau. Điều này đặt ra yêu cầu cao cho các thuật toán và hệ thống trong việc xử lý và tái tạo hình ảnh một cách chính xác và nhất quán.
+
+Một khía cạnh khác cần được xem xét là tính chi tiết và tính chính xác của quá trình thay thế và lấp đầy hình ảnh. Trong một số trường hợp, việc tái tạo các chi tiết nhỏ và phức tạp trong hình ảnh là điều cần thiết, nhưng đôi khi các thuật toán có thể gặp khó khăn trong việc xử lý các chi tiết này một cách chính xác.
+
+Thêm vào đó, yêu cầu về thời gian thực và hiệu năng cũng là một thách thức đối với việc thay thế và lấp đầy hình ảnh. Trong nhiều ứng dụng, quá trình này cần phải được thực hiện trong thời gian ngắn hoặc gần thời gian thực, đòi hỏi sự cân nhắc kỹ lưỡng giữa hiệu suất và chất lượng của quá trình xử lý.
+
+Không chỉ vậy, khả năng tương tác và tuỳ chỉnh cũng là một yếu tố quan trọng trong việc thay thế và lấp đầy hình ảnh. Người dùng có thể cần can thiệp vào quá trình này để điều chỉnh và tùy chỉnh hình ảnh theo ý muốn của họ, đặt ra yêu cầu cao cho các hệ thống phải cung cấp các công cụ và giao diện người dùng linh hoạt.
+
+Cuối cùng, việc bảo mật và quản lý riêng tư cũng là một vấn đề quan trọng cần được xem xét trong việc thay thế và lấp đầy hình ảnh. Bảo vệ thông tin cá nhân và đảm bảo an toàn cho dữ liệu người dùng là một ưu tiên hàng đầu, đặc biệt trong các ứng dụng có tính chất nhạy cảm.
+
+Tổng cộng, việc thay thế và lấp đầy hình ảnh là một lĩnh vực nghiên cứu đầy thách thức và tiềm năng, đòi hỏi sự đóng góp từ cả cộng đồng nghiên cứu và ngành công nghiệp. Để vượt qua các thách thức trên, chúng ta cần tiếp tục nghiên cứu và phát triển các phương pháp, công nghệ và ứng dụng mới, đồng thời cân nhắc kỹ lưỡng giữa các yếu tố như hiệu suất, chất lượng và bảo mật.
+
+\chapter{HỌC MÁY, HỌC SÂU VÀ CÁC CÔNG NGHỆ TRONG GIẢI QUYẾT BÀI TOÁN}
+
+\section{Học máy}
+
+\subsection{Khái niệm}
+
+Học máy (Machine Learning – ML) là một lĩnh vực của trí tuệ nhân tạo (Artificial Intelligence – AI) tập trung vào việc phát triển các thuật toán và kỹ thuật cho phép máy tính học hỏi từ dữ liệu và cải thiện hiệu suất theo thời gian mà không cần lập trình rõ ràng. Thay vì viết mã chi tiết để thực hiện một nhiệm vụ, học máy giúp máy tính tự động hóa việc ra quyết định thông qua việc nhận diện và phân tích các mẫu trong dữ liệu.
+
+\subsection{Lịch sử phát triển}
+
+Học máy có một lịch sử phát triển dài, bắt đầu từ những năm 1950 với những nghiên cứu đầu tiên về AI. Dưới đây là một số cột mốc quan trọng:\\
+Năm 1950: Alan Turing giới thiệu "Turing Test" \cite{turing1950} và đưa ra ý tưởng về một cỗ máy có khả năng học hỏi từ kinh nghiệm.\\
+Năm 1959: Arthur Samuel, một nhà tiên phong trong lĩnh vực này, phát triển một chương trình chơi cờ vua và giới thiệu thuật ngữ "machine learning".\\
+Năm 1960–1970: Nghiên cứu về mạng nơ-ron nhân tạo (Artificial Neural Networks - ANN) bắt đầu, nhưng gặp khó khăn do giới hạn về sức mạnh tính toán và dữ liệu.\\
+Năm 1980–1990: Sự xuất hiện của các thuật toán như cây quyết định, mạng nơ-ron đa lớp (MLP), và máy vector hỗ trợ (SVM) đã mang lại nhiều tiến bộ đáng kể.\\
+Các năm 2000+: Sự bùng nổ của dữ liệu lớn (Big Data) và cải tiến trong phần cứng (đặc biệt là GPU) đã thúc đẩy sự phát triển của học sâu (Deep Learning).
+
+\subsection{Các thành công của học máy}
+
+Học máy đã đạt được nhiều thành tựu ấn tượng trong nhiều lĩnh vực khác nhau. Trong \textit{thị giác máy tính}, các thuật toán học sâu như CNN đã đạt hiệu suất vượt trội trong các nhiệm vụ nhận diện hình ảnh và phân loại đối tượng. Trong lĩnh vực \textit{xử lý ngôn ngữ tự nhiên (NLP)}, các mô hình như Transformer và các biến thể của nó, bao gồm BERT và GPT, đã cải thiện đáng kể khả năng hiểu và sinh ngôn ngữ. Trong \textit{y học}, học máy được ứng dụng để phát hiện ung thư, phân tích hình ảnh y khoa và dự đoán bệnh. Trong ngành \textit{tài chính}, các kỹ thuật học máy giúp dự đoán thị trường, phát hiện gian lận và phân tích rủi ro một cách hiệu quả.
+
+
+\subsection{Các thuật toán chính trong học máy}
+
+Một số thuật toán học máy phổ biến đóng vai trò nền tảng trong nhiều ứng dụng thực tiễn. \textit{Hồi quy tuyến tính (Linear Regression)} là một phương pháp cơ bản nhưng mạnh mẽ dùng để dự đoán các giá trị số liên tục, thường được áp dụng trong các bài toán như dự đoán giá nhà, nhiệt độ, hay doanh thu. \textit{Cây quyết định (Decision Trees)} là một mô hình có cấu trúc dạng cây, trong đó mỗi nút đại diện cho một điều kiện kiểm tra trên thuộc tính, giúp đưa ra các quyết định rõ ràng và dễ diễn giải. \textit{Máy vector hỗ trợ (SVM)} sử dụng siêu phẳng tối ưu để phân chia dữ liệu thuộc các lớp khác nhau, rất hiệu quả trong các bài toán phân loại có biên rõ ràng giữa các nhóm dữ liệu. \textit{K-Means} là một thuật toán phân cụm không giám sát, giúp nhóm các điểm dữ liệu thành các cụm dựa trên sự tương đồng, thường được dùng trong phân tích thị trường và khai phá dữ liệu. Cuối cùng, \textit{mạng nơ-ron nhân tạo (Artificial Neural Networks - ANN)} là một mô hình lấy cảm hứng từ hoạt động của não người, có khả năng học từ dữ liệu lớn và phức tạp để thực hiện các nhiệm vụ như nhận diện hình ảnh, dịch ngôn ngữ và dự đoán chuỗi thời gian.
+
+
+\subsection{Tổng kết}
+
+Học máy đã trở thành một lĩnh vực quan trọng trong công nghệ hiện đại, với nhiều ứng dụng thực tiễn. Sự phát triển của các thuật toán và khả năng xử lý dữ liệu lớn đã mở ra nhiều cơ hội mới, từ tự động hóa các tác vụ phức tạp đến nâng cao chất lượng dịch vụ và sản phẩm.
+
+\section{Học sâu}
+
+\subsection{Khái niệm}
+
+Học sâu (Deep Learning) là một nhánh của học máy, tập trung vào việc sử dụng các mạng nơ-ron nhân tạo với nhiều lớp (deep neural networks) để mô phỏng hoạt động của não bộ con người trong việc học hỏi từ dữ liệu. Các mô hình học sâu có khả năng tự động trích xuất đặc trưng từ dữ liệu thô, giúp cải thiện hiệu suất và độ chính xác của các bài toán phức tạp.
+
+\subsection{Lịch sử phát triển}
+
+Học sâu phát triển từ mạng nơ-ron nhân tạo và đã trải qua nhiều giai đoạn:\\
+1940–1960: Mô hình nơ-ron đầu tiên như Perceptron do Frank Rosenblatt giới thiệu.\\
+1980s: Khái niệm \textit{multi-layer perceptron (MLP)} và thuật toán lan truyền ngược (backpropagation) được phát triển bởi Geoffrey Hinton và các đồng nghiệp.\\
+2000s: GPU và kỹ thuật học không giám sát, học chuyển giao (Transfer Learning) thúc đẩy học sâu.\\
+2012: AlexNet giành chiến thắng trong cuộc thi ImageNet, đánh dấu đột phá của học sâu.
+
+\subsection{Các thành công của học sâu}
+
+Học sâu đã đạt được nhiều thành tựu đáng kể trong nhiều lĩnh vực khác nhau nhờ khả năng tự động trích xuất đặc trưng và học từ dữ liệu quy mô lớn. Trong lĩnh vực \textit{thị giác máy tính}, các mô hình mạng nơ-ron tích chập (CNN) đã đạt được hiệu suất cao trong các tác vụ như nhận diện hình ảnh, phát hiện đối tượng và phân loại hình ảnh, góp phần quan trọng trong các hệ thống giám sát thông minh, xe tự lái và phân tích hình ảnh y tế. Đối với \textit{xử lý ngôn ngữ tự nhiên}, sự ra đời của mô hình Transformer và các biến thể như BERT~\cite{bert} và GPT~\cite{gpt} đã cải thiện đáng kể khả năng hiểu ngữ cảnh và sinh ngôn ngữ tự nhiên của máy tính, từ đó tạo ra các ứng dụng mạnh mẽ như dịch máy, tóm tắt văn bản, và chatbot thông minh. Trong lĩnh vực \textit{chơi game}, hệ thống AlphaGo~\cite{alphago} của DeepMind đã đánh bại nhà vô địch thế giới trong trò chơi cờ vây, đánh dấu một cột mốc lịch sử trong việc ứng dụng học sâu kết hợp với học tăng cường để giải quyết các bài toán có không gian trạng thái khổng lồ. Trong \textit{y học}, học sâu đã giúp cải thiện độ chính xác trong chẩn đoán bệnh từ hình ảnh y khoa, dự đoán bệnh dựa trên dữ liệu bệnh án điện tử, và phát hiện các mẫu gene liên quan đến bệnh di truyền, từ đó hỗ trợ các bác sĩ đưa ra quyết định điều trị hiệu quả hơn.
+
+
+\subsection{Các thuật toán và mô hình chính trong học sâu}
+
+Học sâu bao gồm nhiều thuật toán và mô hình khác nhau, mỗi loại phù hợp với các loại dữ liệu và bài toán cụ thể. Một số mô hình phổ biến như mạng nơ-ron tích chập (Convolutional Neural Networks - CNNs) thường được sử dụng trong thị giác máy tính cho các bài toán như nhận diện và phân loại hình ảnh. Mạng nơ-ron hồi quy (Recurrent Neural Networks - RNNs) lại thích hợp cho các bài toán xử lý dữ liệu tuần tự như xử lý ngôn ngữ tự nhiên và dự báo chuỗi thời gian. Để giải quyết vấn đề quên dần trong việc học các mối quan hệ dài hạn, mạng nơ-ron chuỗi dài ngắn (Long Short-Term Memory - LSTM), một biến thể của RNN, đã được phát triển. Ngoài ra, mạng sinh đối kháng (Generative Adversarial Networks - GANs) gồm hai mạng nơ-ron cạnh tranh nhau—một mạng tạo dữ liệu giả (generator) và một mạng phân biệt dữ liệu thật và giả (discriminator)—được sử dụng phổ biến trong các ứng dụng tạo hình ảnh và video. Cuối cùng, mô hình Transformer với cơ chế tự chú ý (self-attention) đã cải tiến đáng kể hiệu suất trong các bài toán xử lý ngôn ngữ tự nhiên (NLP), và ngày càng trở nên phổ biến trong nhiều lĩnh vực khác.
+
+\subsection{Tổng kết}
+
+Học sâu đã trở thành một trong những công nghệ quan trọng nhất trong lĩnh vực AI, với nhiều ứng dụng thực tiễn và tiềm năng. Sự phát triển của các mô hình mạng nơ-ron sâu và kỹ thuật học sâu đã giúp máy tính thực hiện được những nhiệm vụ phức tạp mà trước đây chỉ có con người mới làm được. Tương lai của học sâu hứa hẹn sẽ mang lại nhiều đột phá hơn nữa, đặc biệt khi các mô hình trở nên phức tạp và dữ liệu ngày càng phong phú.
+
+\section{Mạng nơ ron nhân tạo}
+
+Mạng nơ ron nhân tạo là nền tảng của nhiều mô hình học sâu hiện đại, đóng vai trò quan trọng trong việc giải quyết các bài toán phức tạp mà các phương pháp học máy truyền thống khó có thể xử lý. Sự phát triển của ANN đã mở ra nhiều cơ hội mới trong nghiên cứu và ứng dụng thực tiễn, như đã được minh chứng qua các thành công đã đề cập ở phần trước.
+
+\subsection{Kiến trúc mạng neuro}
+
+Trong vài năm gần đây, các nghiên cứu về học máy (Machine Learning - ML) hay học sâu (Deep Learning - DL) đã trở nên quan trọng hơn bao giờ hết đối với sự phát triển của OCR ứng dụng trong cuộc sống của chúng ta. Chúng cùng trong một ngành nghiên cứu mới được gọi là trí tuệ nhân tạo AI (Artificial Intelligence). Cụm từ AI đã được nhắc rất thường xuyên ngay từ hội nghị Dartmouth hồi năm 1956. Từ đó trở đi ngành AI đã nhận được sự quan tâm đặc biệt và tăng trưởng mạnh mẽ đến tận bây giờ.
+
+Ban đầu, mô hình chỉ được áp dụng các thuật toán còn ở trạng thái sơ khai, dữ liệu cung cấp vẫn còn hạn chế, và thiết bị công nghệ chưa đủ mạnh mẽ. Các nhà khoa học chỉ xem Học Máy như một ứng dụng để thực hiện phân tích dữ liệu và học từ đó, sau đó thực hiện quyết định.
+
+Một số thuật toán Học Máy được sử dụng là Hồi quy tuyến tính (Linear Regression), Hồi quy logistic (Logistic Regression), Máy vectơ hỗ trợ (SVM - Support Vector Machines), ... Tuy nhiên, do vẫn tồn tại nhiều hạn chế, kết quả của mô hình vẫn còn thấp. Mô hình chỉ có thể áp dụng trong một số trường hợp nhỏ và lại rất nhạy cảm và dễ bị ảnh hưởng bởi nhiễu.
+
+Để giải quyết vấn đề này, mạng neuron (hay neural network - NN) đã được sáng tạo ra bởi các nhà khoa học - một kiến trúc theo lối hoạt động của bộ não con người. Mỗi neuron trong tế bào não con người sẽ nhận tín hiệu vào thông qua các sợi thần kinh, tích tụ lại ở thân neuron (cell body), và khi tín hiệu này vượt qua ngưỡng (threshold), neuron sẽ phát ra tín hiệu ra ngoài. Như vậy, các neuron sẽ truyền tín hiệu cho các neuron khác thông qua liên kết (Dendrites), và từ đó tạo thành mạng lưới thần kinh trong não của chúng ta.
+
+Tuy nhiên, không giống hoàn toàn như mạng thần kinh của con người, mạng neuron nhân tạo đã được cải thiện hơn với việc có các lớp rời rạc, các kết nối và hướng truyền dữ liệu được mở rộng để giải quyết nhiều nhu cầu hơn. Và sau đó, đến năm 2010, bởi mô hình mạng AlexNet dựa trên mạng neuron cơ bản đã giành chiến thắng tại cuộc thi ImageNet với kết quả bỏ xa các mô hình khác.
+
+Hai năm sau tại Google, bởi Andrew Ng các mạng neuron này đã được đưa lên tầm cao mới, làm cho chúng trở nên to lớn hơn thông qua việc tăng số lớp và số lượng các neuron, sau đó chúng đã được huấn luyện qua khối lượng dữ liệu lớn từ Youtube (10 triệu video). Thêm vào đó từ “sâu” (deep) đã được thêm vào việc học để tạo ra sự khởi đầu cho sự phát triển mạnh mẽ của Học Sâu (Deep Learning) cho đến hiện tại.
+\subsection{Mạng neuron tích chập – CNN}
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/1a.png}
+    \caption{Mô hình tổng quát của CNN}
+    \label{fig:2.4}
+\end{figure}
+\vspace{0.5em}
+
+Mạng neuron tích chập (Convolutional Neural Network - CNN) là một mạng thường được sử dụng phổ biến trong việc xử lý ảnh. Nó đã được tạo ra để cải thiện khả năng trích xuất đặc trưng từ ảnh bằng cách phát hiện các mối liên hệ giữa các điểm ảnh lân cận. Mạng CNN bao gồm các tầng Convolution, Pooling và các hàm kích hoạt Activation function, được sắp xếp theo một thứ tự phù hợp tuỳ thuộc vào cấu trúc cụ thể. Dưới đây, chúng ta sẽ đi qua từng tầng một trong mạng:
+
+\textbf{Convolutional Layer (CONV)}: hay còn được gọi là tầng tích chập, đây là tầng đầu tiên nơi các đặc trưng của ảnh đầu vào được bóc tách. Bộ lọc (filter hoặc kernel) thường có kích cỡ MxM được sử dụng để trượt qua bức ảnh. Vùng mà bộ lọc trượt qua trên bức ảnh được gọi là \textit{receptive field}, nghĩa là vùng mà một neural có thể nhìn thấy và đưa ra quyết định. Một ma trận đặc trưng (Feature map) chứa thông tin về các góc và cạnh của bức ảnh được tạo ra sau quá trình này. Feature map sau đó sẽ được chuyển tiếp sang cho các tầng tiếp theo để học những đặc điểm khác biệt.
+
+\textbf{Pooling layer (POOL)}: hay còn được gọi là tầng tổng hợp, thường đặt sau tầng Convolution. Đây là nơi mà đặc trưng chính hoặc quan trọng nhất trong từng vùng của ảnh được xác định. Mục tiêu của tầng này là để giảm kích thước của feature map, từ đó giảm chi phí tính toán. Việc này được thực hiện bằng cách giảm số lượng kết nối giữa các tầng và tính toán độc lập trong feature map. Có nhiều phương pháp tổng hợp phổ biến được sử dụng, bao gồm: \textit{max pooling}, chọn ra giá trị lớn nhất trong mỗi vùng của feature map; \textit{average pooling}, tính giá trị trung bình trong mỗi vùng; \textit{global average pooling}, tính trung bình cho toàn bộ feature map; và \textit{sum pooling}, tính tổng các thành phần trong một vùng. Các phương pháp này giúp mô hình tập trung vào các đặc trưng nổi bật nhất và làm giảm số chiều của dữ liệu đầu ra.
+
+
+Tầng này thường được sử dụng làm liên kết giữa tầng Convolutional và Fully connected.
+
+\textbf{Fully connected layer (FC)} hay \textbf{Dense layer}: thường được gọi là tầng kết nối đầy đủ, được sử dụng để kết nối các neuron với tất cả neuron của tầng trước đó. Tầng này thường được đặt phía trước đầu ra của mạng CNN. Thông thường, đầu vào từ tầng trước sẽ được làm phẳng và chuyển vào tầng Fully connected. Ở đây, các phép toán sẽ được thực hiện để phân loại theo yêu cầu của bài toán.
+
+\textbf{Activation functions} hay \textbf{Activation layer}: có thể gọi là hàm kích hoạt hoặc tầng kích hoạt, là một thành phần quan trọng trong mô hình CNN. Nó được dùng để học và xác định gần như chính xác về mối quan hệ phức tạp giữa các biến của mạng. Qua hàm này, quyết định xem thông tin nào cần được truyền đi và thông tin nào không cần thiết. Đây là một loại hàm phi tuyến tính. Một số hàm thông dụng bao gồm:
+
+\begin{itemize}
+    \item Sigmoid: đầu vào là số thực, đầu ra giới hạn trong khoảng (0,1)
+    \[
+        f(x) = \frac{1}{1 + e^{-x}}
+    \]
+    
+    \item Tanh (Sigmoid mở rộng): đầu ra giới hạn trong khoảng (-1,1)
+    \[
+        f(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+    \]
+    
+    \item ReLU (Rectified Linear Unit): hàm kích hoạt thường được sử dụng cùng với mạng CNN và được biến đổi toàn bộ giá trị đầu vào thành số dương. Điểm mạnh của hàm này là chi phí tính toán thấp.
+    \[
+        f(x) = \max(0, x)
+    \]
+    
+    \item Softmax: thường được sử dụng để tính xác suất của một sự kiện xảy ra. Tổng quát hơn, khả năng xuất hiện của một class trong số tất cả các class có thể xuất hiện được tính bằng hàm softmax.
+\end{itemize}
+
+\[
+    f(x)_i = \frac{e^{x_i}}{\sum_{j=1}^n e^{x_j}} \quad \text{với } i = 1, 2, ..., n
+\]
+
+\subsection{Mạng neuron hồi quy – RNN}
+
+Các mạng hồi quy hay còn được gọi là Recurrent Neural Network – RNN là một lớp của mạng neuron mà đầu ra được dùng làm đầu vào trong khi có các trạng thái ẩn. Nếu như các mạng CNN đa phần được dùng để giải quyết các bài toán với đầu vào là các đối tượng rời rạc và có cấu trúc giống hệt nhau (independently and identically distributed – i.i.d) như hình ảnh, thì mạng RNN được hình thành nhằm xử lý những đầu vào có tính chất tuần tự, theo dạng chuỗi gọi chung là những dữ liệu có tính chất ngẫu nhiên như là các dữ liệu tiếng nói, hành vi của một người, ...
+
+Ý tưởng chính của nó là mạng RNN sẽ đọc các đầu vào của dữ liệu tại mỗi bước thời gian xác định (gọi là time-step). Đầu ra tại mỗi bước sẽ được truyền vào mạng và mạng sẽ ghi nhớ trạng thái được gọi là trạng thái trước đó và sẽ tác động đến đầu ra của bước tiếp theo. Cứ như thế, quá trình này được gọi là quá trình "hồi tiếp".
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/1d.png}
+    \caption{Kiến trúc mạng RNN}
+    \label{fig:2.9}
+\end{figure}
+\vspace{0.5em}
+
+Đi sâu vào chi tiết hơn, ta có thể xem ở hình trên. Nếu như mạng neuron thông thường khi đầu vào (input) \( x \) đi qua lớp ẩn \( h \) (hidden layer \( h \)) và tạo ra đầu ra (output) là \( y \) với kết nối hoàn toàn (fully connected) giữa các tầng thì với RNN, các đầu vào \( x_t \) sẽ được kết hợp với lớp ẩn \( h_{t-1} \) bởi hàm \( f_w \) để tính toán các lớp ẩn hiện tại và đầu ra \( y_t \) sẽ được tính ra từ \( h_t \), \( W \) là tập các trọng số.
+
+Như vậy kết quả từ các quá trình tính toán trước đã được ghi nhớ bằng cách kết hợp với \( h_{t-1} \) cho ra \( h_t \) để tăng độ chính xác của các dự báo ở giai đoạn hiện tại.
+
+\[
+h_t = f_w(h_{t-1}, x_t)
+\]
+
+\[
+h_t = \tanh(W_{hh} h_{t-1} + W_{xh} x_t)
+\]
+
+\[
+y_t = W_{hy} h_t
+\]
+
+Với:
+\begin{itemize}
+    \item \( f_w \) là hàm \( \tanh \), ngoài ra còn có một số hàm phi tuyến khác như ReLU, ...
+    \item \( W_{hh}, W_{xh}, W_{hy} \): là 3 ma trận trọng số cho 2 quá trình tính toán là:
+    \begin{itemize}
+        \item \( W_{hh} \) kết hợp với bộ nhớ trước \( h_{t-1} \)
+        \item \( W_{xh} \) kết hợp với \( x_t \) để tìm ra bộ nhớ của bước hiện tại \( h_t \)
+        \item sau đó kết hợp với \( W_{hy} \) để tính ra \( y_t \)
+    \end{itemize}
+\end{itemize}
+
+Một số cấu trúc mở rộng của RNN:
+
+\textbf{LSTM (Long Short-Term Memory)}: Mạng bộ nhớ dài ngắn. Được thiết kế để giải quyết vấn đề mất mát gradient, khi các giá trị có thể tiến về 0 hoặc tăng lên một cách không kiểm soát đối với chuỗi dữ liệu dài.  
+
+\textbf{BiLSTM (Bidirectional LSTM)}: Mạng bộ nhớ dài ngắn hai chiều. Được xây dựng để học thông tin từ cả quá khứ (từ trái sang phải – forward LSTM) và tương lai (từ phải sang trái – backward LSTM). Sự kết hợp của hai chiều giúp mô hình dự đoán chính xác hơn, tuy nhiên yêu cầu một lượng lớn dữ liệu huấn luyện. Đây là công cụ hữu ích trong việc xử lý chuỗi thời gian và ngôn ngữ tự nhiên, mang lại hiệu suất cao cho các ứng dụng trong thực tế.  
+
+\vspace{1em}
+\noindent\textit{[Hình 2.10. Cấu trúc BiLSTM – \textbf{PLACEHOLDER}]}\\
+\subsection{Một số cấu trúc mạng CNN hiện nay}
+
+\vspace{1em}
+\noindent\textit{[Hình 2.11. Lịch sử phát triển các cấu trúc mạng CNN – \textbf{PLACEHOLDER}]}\\
+
+Kể từ khi Machine Learning và Deep Learning được phát triển, đã có nhiều mô hình mạng neuron được xây dựng dựa trên kiến trúc CNN. Dưới đây, các mô hình nổi bật nhất là Sparse coding, SIFT, AlexNet, VGGNet, ResNet và Inception. Trong số đó, hai kiến trúc phổ biến là ResNet và Inception thường được sử dụng như xương sống (backbone) cho các mô hình xử lý hình ảnh (computer vision - CV).
+
+\subsubsection{VGGNet (2014)}
+
+\vspace{1em}
+\noindent\textit{[Hình 2.12. Kiến trúc mạng VGG-16 – \textbf{PLACEHOLDER}]}\\
+
+VGGNet [28] được phát triển bởi K. Simonyan và A. Zisserman từ Đại học Oxford, được giới thiệu trong bài báo "Very Deep Convolutional Networks for Large-Scale Image Recognition" vào năm 2014. VGG là viết tắt của Visual Geometry Group có cấu trúc rất đơn giản và thống nhất, sử dụng duy nhất các kernel 3x3 trong các lớp convolution, điều này giúp việc thiết kế và triển khai mô hình trở nên dễ dàng hơn.
+
+Chi tiết về cấu trúc của VGGNet bao gồm đầu vào là ảnh RGB có kích thước 224x224 pixel. Trong các tầng convolutional, VGG sử dụng receptive field kích thước 3x3 kết hợp với bộ lọc 1x1 để thực hiện các biến đổi tuyến tính trên đầu vào, sau đó áp dụng hàm kích hoạt ReLU. Stride được thiết lập là 1 nhằm duy trì độ phân giải của ảnh qua các tầng. Mạng cũng bao gồm ba tầng fully connected, trong đó hai tầng đầu tiên có 4096 kênh và tầng cuối cùng có 1000 kênh, tương ứng với số lượng lớp đầu ra trong bài toán phân loại. Tất cả các lớp ẩn đều sử dụng hàm kích hoạt ReLU. Đáng chú ý, VGG không sử dụng Local Response Normalization (LRN) vì LRN làm tăng yêu cầu bộ nhớ và thời gian huấn luyện trong khi không cải thiện đáng kể độ chính xác của mô hình.
+
+\textbf{Về hiệu suất và ứng dụng:} VGGNet đã đạt được hiệu suất cao trong nhiều bài toán nhận dạng và phân loại hình ảnh. Mô hình này được ứng dụng rộng rãi trong các lĩnh vực thị giác máy tính như nhận dạng đối tượng, phân đoạn ảnh, và mô tả ảnh. Ngoài ra, VGGNet còn đóng vai trò là nền tảng cho nhiều nghiên cứu tiếp theo và là cơ sở cho các biến thể mạng nơ-ron sâu khác.
+
+
+\textbf{Một số hạn chế:} Mặc dù VGGNet mang lại hiệu suất cao trong nhiều bài toán thị giác máy tính, nhưng mô hình này cũng tồn tại một số hạn chế đáng kể. Trước hết, kích thước mô hình rất lớn do số lượng tham số nhiều, đặc biệt là trong các lớp fully connected, khiến việc lưu trữ và triển khai trở nên khó khăn, nhất là trên các thiết bị có tài nguyên hạn chế. Bên cạnh đó, VGGNet yêu cầu tài nguyên tính toán cao để huấn luyện do có nhiều lớp và tham số, đòi hỏi bộ nhớ GPU lớn và thời gian huấn luyện kéo dài, điều này gây bất lợi cho các ứng dụng yêu cầu tối ưu hóa tài nguyên hoặc huấn luyện nhanh. Ngoài ra, khả năng khái quát hóa của VGGNet cũng còn hạn chế, khi mô hình có thể gặp khó khăn với các dữ liệu đầu vào có sự khác biệt lớn so với dữ liệu huấn luyện ban đầu, dẫn đến hiệu suất suy giảm trong các tình huống ứng dụng thực tế đa dạng.
+
+
+Một số mô hình VGGNet: VGG-16, VGG-19, VGG-11, VGG-13, …
+\section{Các công nghệ giải quyết bài toán thay thế và lấp đầy hình ảnh}
+
+Trong bài toán thay thế và lấp đầy hình ảnh có 3 bài toán quan trọng là bài toán định dạng hình ảnh, bài toán tạo ra ảnh nhiễu (Mask Generator) và bài toán tạo ra hình ảnh mới (Image generator or Inpainting image).
+
+\subsection{Các bài toán con}
+
+\subsubsection{Bài toán định dạng hình ảnh (Format Image)}
+
+\textbf{Định nghĩa:} Format Image là bài toán định dạng lại hình ảnh về cùng một thể thống nhất để phù hợp với mô hình học máy cần học tập (training).
+
+\textbf{Đầu vào:} Một ảnh được biểu diễn là một ma trận 3 chiều, CxHxW với C là số lượng kênh (thường là 3: đỏ, xanh lá cây, xanh lam), H là chiều dài ảnh, W là chiều rộng ảnh.
+
+\textbf{Đầu ra:} Một bức ảnh được biểu diễn là một ma trận 3 chiều, CxHxW với C là số lượng kênh (thường là 3: đỏ, xanh lá cây, xanh lam), H là chiều dài ảnh, W là chiều rộng ảnh. H và W đã được tinh chỉnh để phù hợp với học máy cũng như bức ảnh được xoay để tăng độ sâu trong việc học.
+
+Việc định dạng hình ảnh là một bước quan trọng trong quá trình chuẩn bị dữ liệu. Ở bước này các kỹ thuật phổ biến có thể áp dụng bao gồm:
+
+Một số kỹ thuật tiền xử lý ảnh phổ biến được áp dụng nhằm cải thiện hiệu quả huấn luyện mô hình bao gồm: chuyển đổi không gian màu từ RGB sang HSV hoặc GRAY để làm nổi bật các đặc trưng cần học; thay đổi kích cỡ ảnh nhằm đưa tất cả ảnh về cùng một kích thước, giúp mô hình dễ học hơn và giảm độ phức tạp trong quá trình xử lý; làm mịn ảnh để giảm nhiễu, từ đó giúp ảnh trở nên mềm hơn và dễ phát hiện vật thể hơn; và phát hiện biên (edge detection) nhằm làm nổi bật các cạnh của vật thể trong ảnh, hỗ trợ các bước xử lý sau như phân đoạn hoặc nhận diện.
+
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/2a.png}
+    \caption{Cách hoạt động của các mô hình tại ảnh nhiễu}
+    \label{fig:2.15}
+\end{figure}
+\vspace{0.5em}
+
+\subsubsection{Bài toán tạo ra ảnh nhiễu (Mask Generator)}
+
+Là bài toán tạo ra ảnh mặt nạ để che đi một phần ảnh gốc, giúp mô hình học máy hiểu rằng phần đó đang bị thiếu và cần phải được điền vào (inpainting). 
+
+Đầu vào: Một ảnh định dạng đúng.
+
+Đầu ra: Một ảnh mask đen trắng hoặc xám, nơi vùng màu trắng biểu diễn vùng bị che, vùng màu đen biểu diễn vùng còn giữ lại, xám có thể biểu thị mức độ phần trăm bị mất.
+
+Một số phương pháp phổ biến để tạo ảnh mask bao gồm: vẽ trực tiếp, trong đó người dùng có thể tự chọn vùng muốn thay thế theo cách thủ công; sử dụng các thuật toán tách nền như SAM, U2Net để tự động phát hiện và tạo vùng mask dựa trên đối tượng trong ảnh; hoặc sinh tự động từ các ảnh khác bằng cách phân tích và phát hiện những vùng thường xuyên cần xóa, từ đó xây dựng ảnh mask một cách thông minh và phù hợp với ngữ cảnh sử dụng.
+
+
+\subsubsection{Bài toán tạo ra hình ảnh mới (Image Generator)}
+
+Đây là bài toán khó nhất trong toàn bộ quy trình, vì nó yêu cầu mô hình phải hiểu được bối cảnh tổng thể của ảnh gốc để có thể sinh ra nội dung thay thế một cách hợp lý cho vùng ảnh bị mất. Đầu vào của bài toán là một ảnh gốc cùng với ảnh mặt nạ xác định vùng cần phục hồi, và đầu ra là một ảnh hoàn chỉnh trong đó các vùng bị che khuất đã được lấp đầy bằng nội dung phù hợp về mặt hình ảnh và ngữ cảnh. Các mô hình hiện đại thường áp dụng những kỹ thuật tiên tiến như \textbf{embedding} để trích xuất đặc trưng từ vùng ảnh còn lại nhằm suy luận thông tin bị thiếu, \textbf{attention} để tập trung vào các vùng quan trọng giúp cải thiện khả năng học và tái tạo, và đặc biệt là các \textbf{diffusion models}—mô hình khuếch tán—giúp sinh ảnh một cách dần dần từ noise, mang lại kết quả tự nhiên và chân thực hơn cho vùng được phục hồi.
+
+\subsection{Các mô hình định dạng hình ảnh}
+
+\subsubsection{Các phương pháp cổ điển}
+
+Trước khi các mô hình định dạng hình ảnh tiên tiến hiện nay được áp dụng trong học máy, đã có một số phương pháp cổ điển được sử dụng để chuẩn bị và xử lý hình ảnh nhằm đơn giản hóa và cải thiện chất lượng dữ liệu đầu vào. Một trong những phương pháp phổ biến là \textbf{chuyển đổi không gian màu}. Việc chuyển đổi từ RGB sang grayscale (xám) giúp giảm độ phức tạp của hình ảnh bằng cách loại bỏ thông tin màu và chỉ giữ lại thông tin về độ sáng. Ngoài ra, việc chuyển đổi sang các không gian màu khác như HSV hay YCbCr cũng thường được sử dụng để dễ dàng xử lý các đặc điểm cụ thể của hình ảnh, chẳng hạn như độ sáng, độ bão hòa hay sắc độ.
+
+\textbf{Thay đổi kích thước hình ảnh} cũng là một bước quan trọng trong tiền xử lý. Việc thay đổi kích thước (resizing) giúp đưa tất cả các hình ảnh về cùng một độ phân giải, từ đó đồng nhất đầu vào và giảm độ phức tạp cho mô hình học máy. Trong một số trường hợp, thay vì co kéo ảnh có thể gây méo mó, người ta sử dụng kỹ thuật thêm vùng đệm (padding) để đạt được kích thước mong muốn mà vẫn giữ nguyên tỷ lệ gốc của hình ảnh.
+
+Một nhóm phương pháp khác là \textbf{làm mịn và lọc ảnh}, được sử dụng để loại bỏ nhiễu và cải thiện chất lượng ảnh. Ví dụ, bộ lọc Gaussian (Gaussian Blur) được áp dụng để làm mịn hình ảnh một cách tổng thể, trong khi bộ lọc trung bình (Median Filter) đặc biệt hiệu quả trong việc loại bỏ nhiễu muối tiêu bằng cách thay thế mỗi điểm ảnh bằng giá trị trung vị của các điểm ảnh xung quanh.
+
+\textbf{Phát hiện cạnh} là bước cuối cùng giúp làm nổi bật các đường biên và cấu trúc chính trong ảnh. Các thuật toán như Sobel, Prewitt và đặc biệt là Canny được sử dụng để xác định các cạnh rõ ràng trong hình ảnh, từ đó hỗ trợ việc phân tích hoặc trích xuất đặc trưng một cách hiệu quả hơn.
+
+
+Những phương pháp cổ điển này cung cấp các kỹ thuật cơ bản để xử lý và chuẩn bị dữ liệu hình ảnh trước khi đưa vào các mô hình machine learning. Mặc dù hiện nay đã có nhiều kỹ thuật và mô hình tiên tiến hơn như CNN (Convolutional Neural Networks) hay GANs (Generative Adversarial Networks), nhưng các phương pháp cổ điển vẫn đóng vai trò quan trọng trong việc hiểu và xử lý dữ liệu hình ảnh một cách cơ bản và hiệu quả.
+
+\subsubsection{Phương pháp tăng cường dữ liệu (Data Augmentation)}
+
+Phương pháp tăng cường dữ liệu (Data Augmentation) là một kỹ thuật quan trọng trong việc định dạng hình ảnh cho học máy. Kỹ thuật này nhằm mục đích tạo ra các phiên bản mới của dữ liệu huấn luyện bằng cách thay đổi nhỏ các thuộc tính của hình ảnh gốc, như xoay, phóng to, thu nhỏ, cắt, thay đổi ánh sáng, và nhiều phép biến đổi khác. Dưới đây là một vài giới thiệu chi tiết về phương pháp này:
+
+\textbf{Các kỹ thuật tăng cường dữ liệu:} Tăng cường dữ liệu (data augmentation) là một chiến lược tiền xử lý quan trọng được sử dụng nhằm cải thiện khả năng tổng quát hóa của các mô hình học sâu bằng cách mở rộng tập dữ liệu huấn luyện một cách nhân tạo. Một trong những kỹ thuật phổ biến là \textit{xoay ảnh}, trong đó ảnh đầu vào được xoay trong một khoảng góc nhất định (thường từ $-45^\circ$ đến $45^\circ$), giúp mô hình học được tính bất biến đối với sự thay đổi góc nhìn. 
+
+Kỹ thuật \textit{phóng to và thu nhỏ} (scaling) được áp dụng để thay đổi tỷ lệ của ảnh, cho phép mô hình học được đặc trưng ở nhiều mức độ kích thước khác nhau. \textit{Lật ảnh} theo chiều ngang hoặc chiều dọc giúp tăng tính đa dạng phản xạ của đối tượng trong ảnh, hỗ trợ mô hình xử lý tốt hơn các đặc điểm đối xứng. 
+
+Ngoài ra, \textit{cắt ngẫu nhiên} (random cropping) là phương pháp trích xuất các vùng con của ảnh với kích thước và vị trí tùy biến, buộc mô hình phải nhận diện các đặc trưng quan trọng ngay cả khi thông tin đầu vào không đầy đủ. Cuối cùng, các \textit{biến đổi về mặt quang học}, như điều chỉnh độ sáng và độ tương phản, được sử dụng để mô phỏng các điều kiện chiếu sáng khác nhau trong môi trường thực tế. Tổ hợp các kỹ thuật này góp phần giảm hiện tượng overfitting và nâng cao hiệu quả dự đoán của mô hình trên dữ liệu chưa từng thấy.
+
+\subsection{Các mô hình tạo ra ảnh nhiễu}
+
+\subsubsection{Các phương pháp cổ điển}
+
+Trước khi các mô hình học sâu và kỹ thuật hiện đại ra đời, nhiều phương pháp cổ điển đã được sử dụng để tạo ra nhiễu trên hình ảnh (mask generation). Dưới đây là các phương pháp phổ biến:
+
+\textbf{1. Gaussian Noise (Nhiễu Gaussian)}  
+
+Phương pháp:  
+
+– Mô tả: Nhiễu Gaussian là một loại nhiễu ngẫu nhiên có phân phối chuẩn (Gaussian) được thêm vào mỗi pixel của hình ảnh.  
+– Cách thực hiện:
+\begin{itemize}
+    \item Xác định trung bình (mean) và độ lệch chuẩn (standard deviation) của phân phối Gaussian.
+    \item Sinh nhiễu Gaussian dựa trên các thông số này.
+    \item Thêm nhiễu này vào từng pixel của hình ảnh gốc.
+\end{itemize}
+
+Công thức:
+
+\[
+I_{noise}(x, y) = I(x, y) + N(0, \sigma^2)
+\]
+
+Trong đó, \(N(0, \sigma^2)\) là nhiễu Gaussian với trung bình 0 và độ lệch chuẩn \(\sigma\).
+
+\textbf{2. Salt-and-Pepper Noise (Nhiễu muối tiêu)}  
+
+Phương pháp:  
+
+– Mô tả: Nhiễu muối tiêu là loại nhiễu ngẫu nhiên làm một số pixel trong hình ảnh bị thay đổi thành giá trị cực đại (trắng) hoặc cực tiểu (đen).  
+– Cách thực hiện:
+\begin{itemize}
+    \item Xác định tỷ lệ nhiễu (probability).
+    \item Chọn ngẫu nhiên các pixel trong hình ảnh để thay đổi giá trị của chúng thành 0 hoặc 255.
+\end{itemize}
+
+Đối với một ảnh \( I \) kích thước \( M \times N \), nhiễu salt-and-pepper được thêm vào sao cho mỗi điểm ảnh \( I(x, y) \) có xác suất \( p_s \) bị thay đổi thành giá trị salt (255), và xác suất \( p_p \) bị thay đổi thành pepper (0). Các điểm ảnh còn lại với xác suất \( 1 - p_s - p_p \) sẽ không thay đổi.
+
+\textbf{3. Speckle Noise (Nhiễu Speckle)}  
+
+Loại nhiễu tự nhiên thường gặp trong hình ảnh radar hoặc ultrasound, được tạo ra bằng cách nhân ảnh với một ma trận nhiễu có giá trị ngẫu nhiên.
+
+\subsubsection{Mô hình GAN}
+
+Phương pháp:  
+
+GANs bao gồm hai mạng neural: Generator (G) và Discriminator (D). Generator tạo ra dữ liệu giả, còn Discriminator cố gắng phân biệt giữa dữ liệu thật và dữ liệu giả.
+
+\textbf{Công thức:}
+
+Loss function của Discriminator:
+
+\[
+L_D = -\mathbb{E}_{x \sim p_{data}(x)}[\log D(x)] - \mathbb{E}_{z \sim P_z(z)}[\log(1 - D(G(z)))]
+\]
+
+Loss function của Generator:
+
+\[
+L_G = -\mathbb{E}_{z \sim P_z(z)}[\log D(G(z))]
+\]
+
+Trong đó:
+\begin{itemize}
+    \item \( x \): dữ liệu thật.
+    \item \( z \): nhiễu ngẫu nhiên từ không gian tiềm ẩn (latent space).
+    \item \( G(z) \): hình ảnh giả sinh ra từ Generator.
+    \item \( D(x) \): xác suất mà Discriminator cho rằng \( x \) là thật.
+\end{itemize}
+
+\subsubsection{Variational Autoencoders (VAEs)}
+
+Phương pháp:  
+
+VAEs học một phân phối xác suất trên dữ liệu đầu vào và có thể sinh ra các biến thể mới của dữ liệu từ không gian tiềm ẩn.
+
+\textbf{Công thức:}
+
+\[
+L = \mathbb{E}_{q_\theta(z|x)}[\log p_\theta(x|z)] - KL(q_\theta(z|x) \| p(z))
+\]
+
+Trong đó:
+\begin{itemize}
+    \item \( q_\theta(z|x) \): phân phối xác suất của không gian tiềm ẩn được học bởi encoder.
+    \item \( p_\theta(x|z) \): phân phối xác suất của dữ liệu được tái tạo bởi decoder.
+    \item \( KL \): độ đo Kullback-Leibler giữa phân phối tiềm ẩn và phân phối chuẩn.
+\end{itemize}
+
+\subsubsection{Denoising Autoencoders (DAEs)}
+
+Phương pháp:  
+
+DAEs học cách loại bỏ nhiễu từ hình ảnh bằng cách thêm nhiễu vào dữ liệu đầu vào và yêu cầu mô hình tái tạo lại hình ảnh gốc không nhiễu.
+
+\textbf{Công thức:}
+
+\[
+L = \|x - \hat{x}\|^2
+\]
+
+Trong đó:
+\begin{itemize}
+    \item \( x \): dữ liệu đầu vào gốc.
+    \item \( \hat{x} \): dữ liệu được tái tạo từ dữ liệu nhiễu.
+    \item \( \|\cdot\|^2 \): chuẩn Euclid.
+\end{itemize}
+
+\subsubsection{Adversarial Noise Generation}
+
+Phương pháp:  
+
+Adversarial noise generation tạo ra nhiễu nhằm làm cho mô hình nhầm lẫn bằng cách tối ưu hóa nhiễu này để đánh lừa mô hình.
+
+\textbf{Công thức:}
+
+FGSM (Fast Gradient Sign Method):
+
+\[
+x_{adv} = x + \epsilon \cdot \text{sign}(\nabla_x J(\theta, x, y))
+\]
+
+Trong đó:
+\begin{itemize}
+    \item \( x_{adv} \): hình ảnh nhiễu (adversarial).
+    \item \( \epsilon \): tham số điều chỉnh độ mạnh của nhiễu.
+    \item \( J(\theta, x, y) \): hàm mất mát của mô hình với tham số \( \theta \), đầu vào \( x \), và nhãn \( y \).
+\end{itemize}
+\subsection{Các mô hình tạo ra hình ảnh mới}
+
+\subsubsection{BigGAN}
+
+Phương pháp:  
+BigGAN [31] là một phiên bản cải tiến của GAN, được thiết kế để tạo ra hình ảnh có độ phân giải cao và chi tiết hơn thông qua việc sử dụng kiến trúc mạng lớn hơn và kỹ thuật huấn luyện ổn định hơn.  
+
+Mô tả:  
+BigGAN cải thiện chất lượng của GAN bằng cách tăng kích thước batch, sử dụng Regularization, và một số điều chỉnh kiến trúc khác.  
+
+Công thức:  
+• Sử dụng lớp Spectral Normalization trong cả Generator và Discriminator để cải thiện tính ổn định của huấn luyện.  
+• Sử dụng Truncated Normal Distribution để tạo đầu vào \( z \) cho Generator nhằm kiểm soát độ biến thiên của dữ liệu sinh ra.
+
+\subsubsection{VQ-VAE-2}
+
+Phương pháp:  
+VQ-VAE-2 [32] hay Vector Quantized Variational Autoencoder 2 là một loại autoencoder mã hóa hình ảnh vào các mã (codes) rời rạc và sử dụng chúng để tái tạo hình ảnh. Phiên bản thứ hai này cải thiện chất lượng hình ảnh bằng cách sử dụng nhiều tầng mã hóa.  
+
+Mô tả:  
+VQ-VAE-2 sử dụng hai tầng mã hóa để mã hóa hình ảnh ở các cấp độ trừu tượng khác nhau. Mỗi tầng học các đặc trưng khác nhau của hình ảnh, giúp tăng độ chính xác và chi tiết của hình ảnh được tái tạo.  
+
+Công thức:  
+\[
+\mathcal{L} = \mathcal{L}_{recon} + \beta \cdot \mathcal{L}_{commit}
+\]
+
+Trong đó:  
+• \( \mathcal{L}_{recon} \) là loss tái tạo hình ảnh.  
+• \( \mathcal{L}_{commit} \) là commitment loss, giúp mã hóa các vector trong không gian mã hoá.  
+
+\subsubsection{DALL-E}
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/3.png}
+    \caption{Placeholder caption for image 3}
+    \label{fig:3}
+\end{figure}
+\vspace{0.5em}
+
+Phương pháp:  
+DALL-E là một mô hình dựa trên Transformer được phát triển bởi OpenAI, có khả năng sinh ra hình ảnh từ mô tả văn bản (text-to-image generation).
+
+Mô tả:  
+DALL-E sử dụng Transformer để ánh xạ từ không gian văn bản đến không gian hình ảnh, tạo ra các hình ảnh có nội dung phong phú và chi tiết dựa trên mô tả văn bản đầu vào.
+
+Công thức (Self-Attention):
+\[
+\text{Attention}(Q, K, V) = \text{softmax} \left( \frac{QK^T}{\sqrt{d_k}} \right) V
+\]
+
+Trong đó:  
+• \( Q, K, V \): ma trận truy vấn (query), khóa (key), và giá trị (value) tương ứng.
+
+\subsubsection{Neural Radiance Fields (NeRF)}
+
+Phương pháp:  
+NeRF [33] là một mô hình dùng để tái tạo các trường ánh sáng 3D (3D radiance fields) từ các tập hình ảnh 2D. Mô hình này rất hữu ích cho việc tạo ra các hình ảnh tổng hợp hoặc tái tạo hình ảnh từ các góc nhìn khác nhau.  
+
+Mô tả:  
+NeRF sử dụng một mạng neural để ánh xạ từ không gian tọa độ 3D và hướng nhìn vào trường ánh sáng, cho phép tái tạo hình ảnh ở bất kỳ góc nhìn nào.
+
+Công thức (Loss function):
+\[
+\mathcal{L} = \sum \left\| \hat{C}(\mathbf{r}) - C(\mathbf{r}) \right\|_2^2
+\]
+
+\subsubsection{GLIDE}
+
+Phương pháp:  
+GLIDE [34] là một mô hình kết hợp giữa diffusion model và transformer để tạo ra ảnh từ văn bản.
+
+Mô tả:  
+GLIDE sử dụng một quy trình khuếch tán (diffusion process) để sinh ra hình ảnh dần dần từ nhiễu, đồng thời có thể điều chỉnh bằng văn bản. Nó có khả năng tạo ra ảnh chất lượng cao với độ chi tiết tốt.
+
+\subsubsection{SR3 (Super-Resolution via Repeated Refinement)}
+
+Phương pháp:  
+SR3 [35] là một mô hình dùng để nâng cao độ phân giải của hình ảnh thông qua quá trình tinh chỉnh lặp đi lặp lại. Nó là một loại Diffusion Model áp dụng cho tác vụ super-resolution.
+
+Mô tả:  
+SR3 bắt đầu với một hình ảnh có độ phân giải thấp và áp dụng các bước khử nhiễu để dần dần nâng cao độ phân giải của hình ảnh.
+
+Công thức (Reverse diffusion process):
+
+\[
+P_\theta(x_{t-1} | x_t) = \mathcal{N}(x_{t-1}; \mu_\theta(x_t, t), \Sigma_\theta(x_t, t))
+\]
+\section{Kết luận chương}
+
+Chương 2 em đã trình bày các kiến thức về mạng nơ-ron nhân tạo và các công nghệ được sử dụng trong một luồng học xử lý. Để thực hiện xử lý bài toán thay thế và lấp đầy hình ảnh em đã phân thành 3 bài toán nhỏ chính cần xử lý, bao gồm: Định dạng hình ảnh, tạo ảnh nhiễu và bài toán tạo ra hình ảnh mới.
+
+Ở phần định dạng hình ảnh, em đã liệt kê các phương pháp cổ điển như chuyển đổi không gian màu, thay đổi kích ảnh, làm mịn và phát hiện cạnh, tất cả đều là tiền đề để phát triển các mô hình học máy hiện đại phục vụ quá trình này như CNN hay GANS.
+
+Với bài toán tạo ảnh nhiễu, các mô hình nổi trội như GAN, VAEs, DAEs hay Adversarial Noise Generation đã được em đề cập như thành quả từ việc sử dụng các phương pháp nhiễu Gaussian và nhiễu muối tiêu cổ điển.
+
+Bài toán cuối cùng là tạo ra hình ảnh mới, với bài toàn này chương 2 đã trình bày về ý tưởng kiến tạo nói chung và các mô hình nổi trội được phát triển và sử dụng đến ngày nay nói riêng. Tuy nhiên về bài toán chính là thay thế và lấp đầy hình ảnh sẽ được em nói rõ về ý tưởng thực hiện kết hợp các công nghệ đi trước được nhắc đến ở trên vào chương tiếp theo của đồ án.
+\chapter{CHƯƠNG 3: ỨNG DỤNG CÁC CÔNG NGHỆ XỬ LÝ ẢNH TRONG BÀI TOÁN THAY THẾ VÀ LẤP ĐẦY HÌNH ẢNH}
+% \addcontentsline{toc}{chapter}{CHƯƠNG 3: ỨNG DỤNG CÁC CÔNG NGHỆ XỬ LÝ ẢNH TRONG BÀI TOÁN THAY THẾ VÀ LẤP ĐẦY HÌNH ẢNH}
+
+\section{Dữ liệu và phương pháp}
+
+\subsection{Dữ liệu}
+
+Để có được dữ liệu cho việc học máy, chúng ta sẽ cần phải sử dụng các phương pháp tinh chỉnh ảnh, tuy nhiên nhằm giúp người dùng không bị mất thời gian vào quá trình này, có không ít bộ dataset đã được ra mắt với số lượng hình ảnh vô cùng lớn.
+
+Trong đồ án lần này, dữ liệu em đã lấy từ ImageNet, đây là một cơ sở dữ liệu hình ảnh được tổ chức theo hệ thống phân loại WordNet (hiện tại chỉ bao gồm các danh từ), trong đó mỗi class của hệ thống phân loại này sẽ được bao gồm từ hàng trăm đến hàng nghìn hình ảnh. Với số lượng là khoảng 1000 class và 14,197,122 hình ảnh, đây là một trong các nguồn dữ liệu uy tín nhất cho việc nghiên cứu thị giác máy tính và học sâu.
+
+Mặc dù tồn tại nhiều phiên bản khác nhau của tập dữ liệu ImageNet, thực nghiệm này sử dụng bộ dữ liệu từ cuộc thi ILSVRC (ImageNet Large Scale Visual Recognition Challenge) giai đoạn 2012–2017. Bộ dữ liệu này được đánh giá là tiêu chuẩn vàng trong các nghiên cứu về thị giác máy tính và học sâu. Cụ thể, tập dữ liệu bao gồm khoảng 1.2 triệu hình ảnh trong tập huấn luyện, 50,000 hình ảnh trong tập kiểm tra xác thực (validation), và 100,000 hình ảnh trong tập kiểm tra cuối cùng (test). Các hình ảnh thuộc hơn 1,000 lớp đối tượng khác nhau, giúp đảm bảo tính đa dạng và độ phức tạp cao trong nhiệm vụ nhận dạng và phân loại hình ảnh.
+
+
+Những bức ảnh được thu thập từ cuộc thi ILSVRC.
+
+\vspace{1em}
+\noindent
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Img/4.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.49\textwidth}
+        \includegraphics[width=\textwidth]{Img/5.png}
+    \end{minipage}
+    \caption{Một vài hình ảnh có trong Dataset của ImageNet}
+    \label{fig:imagenet_samples}
+\end{figure}
+
+Sau khi tải tập dữ liệu em đã tiến hành phân tích dữ liệu, sau quá trình này em đã nhận ra có không ít ảnh trong tập dữ liệu đã bị lỗi định dạng khiến cho quá trình training bị lỗi và yêu cầu training lại. Nhờ tìm hiểu em tìm được nguyên nhân xảy ra do xung đột với model và Multi GPU, để khắc phục tình trạng này em đã phải lọc bớt.
+\subsection{Phương pháp}
+
+Inpaint Anything được giới thiệu trong bài báo \textit{Inpaint Anything: Segment Anything Meets Image Inpainting} (Yu et al., 2023) vào tháng 4 năm 2023 bởi các nhóm nghiên cứu đến từ trường Đại học Khoa học và Công nghệ Trung Quốc. Đây là phương pháp được đánh giá là tối ưu nhất trong việc đơn giản hoá tác vụ inpaint ảnh bằng việc “clicking and filling” (click chọn vật thể và lấp đầy) mà vẫn đảm bảo độ chính xác một cách tương đối. Đây cũng là phương pháp mà em sẽ sử dụng trong đồ án này.
+
+\vspace{1em}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Img/6.png}
+    \caption{Cấu trúc hoạt động của Inpainting Anything}
+    \label{fig:6}
+\end{figure}
+\vspace{0.5em}
+
+“Inpaint Anything” tận dụng sự kết hợp của các công nghệ tiên tiến như khả năng phân đoạn đối tượng của \textbf{SAM (Segment Anything Model)}, khả năng xoá đối tượng và lấp đầy nền của \textbf{LaMa (Large Mask)}, và khả năng tự tạo hình ảnh từ prompt của \textbf{Stable Diffusion}. Cụ thể, bằng cách sử dụng các công nghệ trên, hệ thống có thể thực hiện ba tác vụ chính:
+
+\begin{enumerate}
+    \item Xóa vật thể: Xoá đối tượng khỏi hình ảnh.
+    \item Lấp đầy: Xoá đối tượng khỏi hình ảnh và thay thế bằng một đối tượng khác theo yêu cầu.
+    \item Thay thế: Giữ nguyên đối tượng nhưng thay thế nền phía sau bằng một hình nền khác.
+\end{enumerate}
+
+Sự tích hợp này cho phép phương pháp “Inpainting Image” xử lý các tác vụ phức tạp một cách dễ dàng và hiệu quả.
+
+\vspace{1em}
+
+\begin{table}[H]
+\centering
+\caption{Các giai đoạn cần thực hiện cùng công nghệ sử dụng}
+\begin{tabularx}{\linewidth}{|l|>{\raggedright\arraybackslash}X|l|}
+\hline
+\textbf{Giai đoạn} & \textbf{Công nghệ} & \textbf{Pretrained} \\ \hline
+Mask Generator & SAM (Segment Anything Model) & Yes \\ \hline
+Remove Object (Xoá vật thể) & LaMa [36] (Large Mask) & Train from scratch \\ \hline
+Inpainting (Thay thế vật thể) & Stable Diffusion v1-5 [37] (runwayml version) & Yes \\ \hline
+Xây dựng trang web ứng dụng & ReactJS (Front-End) / Flask (Back-End) & Create from scratch \\ \hline
+\end{tabularx}
+\end{table}
+
+\subsubsection*{Mask generator với SAM}
+
+Như đã đề cập ở trên, bài toán tạo ra ảnh nhiễu hay ảnh mặt nạ nhằm giúp mô hình học máy có thể xác định được vùng để xóa hay thay thế vật thể.
+
+Trong hệ thống của em, em sử dụng mô hình SAM từ Meta AI. Mô hình này là sự kết hợp của nhiều công nghệ khác nhau như MAE (Masked Auto-Encoder), VIT (Vision Transformer) và CLIP.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.85\textwidth]{Img/7.png}
+    \caption{Tổng quan về mô hình SAM}
+\end{figure}
+
+Quá trình hoạt động của SAM:\\
+\textbf{a) Hình ảnh đầu vào (Image Input)} \\
+Mô hình sẽ nhận hình ảnh \( I \in \mathbb{R}^{H \times W \times 3} \) với chiều cao \( H \), chiều rộng \( W \), và kênh màu (Red-Green-Blue).\\
+\textbf{b) Mã hóa hình ảnh (Image Encoder)}\\
+Hình ảnh đầu vào sẽ được đưa vào một bộ mã hóa hình ảnh. Bộ mã hóa này, thường là một mạng Convolutional Neural Network hoặc Vision Transformer, để trích xuất các đặc trưng quan trọng của hình ảnh. Kết quả của quá trình này là một loạt các vector đặc trưng gọi là “image embedding”.
+
+\[
+E = \text{ImageEncoder}(x)
+\]
+
+Trong đó, \( E \in \mathbb{R}^{H' \times W' \times D} \) là các vector đặc trưng với \( H' \) và \( W' \) là các chiều đã giảm kích thước và \( D \) là số chiều của các vector đặc trưng.
+
+\textbf{c) Mã hóa thông tin (Prompt Encoder)} \\
+Đây là thành phần xử lý các thông tin hướng dẫn từ người dùng để giúp xác định đối tượng cần phân đoạn. Mã hóa thông tin có thể xử lý nhiều loại thông tin hướng dẫn khác nhau:
+
+\begin{itemize}
+    \item \textbf{Mask}: Mặt nạ ban đầu của đối tượng \\
+    \quad \( E_M = \text{MaskEncoder}(M) \)
+    
+    \item \textbf{Points}: Các điểm được người dùng đánh dấu trên hình ảnh để chỉ ra vị trí của đối tượng \\
+    \quad \( E_P = \text{PointsEncoder}(P) \)
+    
+    \item \textbf{Box}: Một hộp giới hạn xung quanh đối tượng \\
+    \quad \( E_B = \text{BoxEncoder}(B) \)
+    
+    \item \textbf{Text}: Văn bản mô tả đối tượng \\
+    \quad \( E_T = \text{TextEncoder}(T) \)
+\end{itemize}
+
+Trong đó \( E_M, E_P, E_B, E_T \) là các vector đặc trưng từ các thông tin hướng dẫn khác nhau.
+
+Các thông tin hướng dẫn này được mã hóa thành các vector đặc trưng thông qua một mạng nơ-ron nhỏ và hợp lại với các vector đặc trưng của hình ảnh.
+
+\textbf{d) Kết hợp thông tin (Combining Features)} \\
+Các vector thông tin từ các bộ mã hóa mặt nạ hình ảnh và mã hóa thông tin được hợp lại. Quá trình kết hợp này thực hiện thông qua phép cộng Vector:
+
+\[
+F = E \oplus E_{\text{prompt}}
+\quad \text{với} \quad
+E_{\text{prompt}} = E_M + E_P + E_B + E_T
+\]
+
+\textbf{e) Tạo mặt nạ phân đoạn (Mask Decoder)} \\
+Quá trình Mask Decoder sẽ tạo ra các mặt nạ phân đoạn từ vector kết hợp \( F \). Mask Decoder thường sử dụng mạng nơ-ron (ví dụ: U-Net) để dự đoán mặt nạ:
+
+\[
+M = \text{MaskDecoder}(F)
+\]
+\[
+M = \text{MaskDecoder}(F)
+\]
+
+Trong đó, \( M \in \mathbb{R}^{H'' \times W''} \) là mặt nạ phân đoạn dự đoán hay Mask image.
+
+\textbf{f) Đánh giá và xuất kết quả (Valid Masks and Scores)} 
+
+Mặt nạ phân đoạn \( M \) đi kèm với một điểm số \( s \) để đánh giá độ chính xác:
+
+\[
+s = \text{Score}(M, \text{ground truth})
+\]
+
+Một hàm điểm phổ biến là IoU (Intersection over Union):
+
+\[
+IoU = \frac{M \cap M_{\text{true}}}{M \cup M_{\text{true}}}
+\]
+
+\subsubsection*{Xóa vật thể với LaMa}
+
+LaMa là một phương pháp lấp đầy hình ảnh dựa trên học sâu, được thiết kế để xử lý các vùng bị mất lớn trong hình ảnh. Phương pháp này sử dụng các tích chập Fourier để duy trì hiệu suất cao ngay cả khi làm việc với ảnh có độ phân giải cao và vùng bị mất rộng.\\
+Hệ thống bao gồm các thành phần chính là \textbf{Mask Generator}, \textbf{Inpainting Network}, và \textbf{Fast Fourier Convolution (FFC)}.\\
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{Img/8.png}
+\caption{Tổng quan về mô hình LaMa}
+\end{figure}
+\textbf{a) Tạo mặt nạ (Mask generator)} \\
+Quá trình Mask Generator tạo ra các mặt nạ xác định các vùng cần được vẽ lại trong ảnh. Mặt nạ được áp lên ảnh đầu vào $x$, tạo ra ảnh có vùng bị mất $x'$.\\
+Mặt nạ có thể được tạo ra thông qua mô hình SAM ở trên.\\
+\textbf{b) Mạng vẽ lại (Inpainting Network)} \\
+Mạng vẽ lại lại phần ảnh vùng bị mất $x'$ và tái tạo lại ảnh hoàn chỉnh $x$. Mạng này bao gồm các bộ chặn: giảm kích thước ảnh, sử dụng FFC Residual Block và tầng kích thước ảnh.\\
+\textbf{c) Fast Fourier Convolution (FFC)} \\
+FFC là thành phần cốt lõi của LaMa, giúp xử lý thông tin cả ở mức độ cục bộ (local context) và toàn cục (global context).
+
+Cấu trúc của FFC:
+
+\begin{itemize}
+    \item \textbf{Nhánh Local}: 
+    \[
+    Y_{\text{local}} = \text{ReLU}(\text{BN}(\text{Conv3x3}(X)))
+    \]
+    
+    \item \textbf{Nhánh Global}: 
+    \[
+    X_f = \text{FFT}(X) \quad
+    Y_f = \text{Conv3x3}(X_f) \quad
+    Y_g = \text{IFFT}(Y_f)
+    \]
+    \[
+    Y_{\text{global}} = \text{ReLU}(\text{BN}(\text{Conv1x1}(Y_g)))
+    \]
+\end{itemize}\\
+\textbf{d) Hàm mất mát (Loss function)} \\
+Hàm mất mát cuối cùng \( \mathcal{L}_{\text{final}} \) kết hợp các thành phần khác nhau để tối ưu hoá chất lượng ảnh tái tạo:
+
+\[
+\mathcal{L}_{\text{final}} = \lambda_{\text{perc}} \mathcal{L}_{\text{perc}} + \lambda_{\text{adv}} \mathcal{L}_{\text{adv}} + \lambda_{\text{rec}} \mathcal{L}_{\text{rec}}
+\]
+
+\begin{itemize}
+    \item \textbf{Perceptual Loss} (\( \mathcal{L}_{\text{perc}} \)): Đánh giá sự khác biệt giữa các đặc trưng trích xuất từ ảnh mục tiêu và ảnh dự đoán.
+    \item \textbf{Adversarial Loss} (\( \mathcal{L}_{\text{adv}} \)): Đảm bảo ảnh tái tạo trông tự nhiên và giống thật.
+    \item \textbf{Reconstruction Loss} (\( \mathcal{L}_{\text{rec}} \)): Đảm bảo tính nhất quán về cấu trúc giữa ảnh tái tạo và ảnh gốc.
+\end{itemize}
+\subsubsection*{Thay thế vật thể với Stable Diffusion}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Img/9.png}
+    \caption{Tổng quan về mô hình Stable Diffusion}
+\end{figure}
+
+Stable Diffusion được giới thiệu trong bài báo \textit{High-Resolution Image Synthesis with Latent Diffusion Models} (Rombach et al., 2022). Mô hình này cải thiện hiệu quả và tốc độ so với mô hình Diffusion gốc bằng cách làm việc trong không gian ẩn thay vì không gian ảnh gốc.
+
+Stable Diffusion hoạt động với các bước như sau:
+
+\textbf{a) Encoder của Autoencoder} \\
+\begin{itemize}
+    \item Nén ảnh vào không gian ẩn với ít chiều hơn.
+    \item \textbf{Công thức:} \quad \( z = E(x) \)
+\end{itemize}
+
+Trong đó, \( E \) là encoder và \( z \) là ảnh gốc.
+
+\textbf{b) Quá trình Diffusion trong không gian ẩn (Latent Space)} \\
+Thực hiện quá trình tương tự như mô hình Diffusion gốc nhưng trong không gian ẩn.
+
+\textbf{Công thức trong quá trình Diffusion:}
+\[
+z_t = \sqrt{\bar{\alpha}_t} z_{t-1} + \sqrt{1 - \bar{\alpha}_t} \cdot \epsilon_t
+\]
+\[
+z_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left(z_t - \frac{1 - \alpha_t}{\sqrt{1 - \bar{\alpha}_t}} \cdot \epsilon_\theta(z_t, t)\right)
+\]
+
+\textbf{c) Decoder của Autoencoder} \\
+\begin{itemize}
+    \item Giải nén từ không gian ẩn về không gian ảnh gốc.
+    \item \textbf{Công thức:} \quad \( \hat{x} = D(z) \)
+\end{itemize}
+
+\textbf{d) Sinh ảnh từ văn bản (Text-to-Image)} \\
+Stable Diffusion còn cho phép sinh ảnh từ đoạn văn mô tả (text prompt) bằng cách:
+\begin{itemize}
+    \item Chuyển văn bản thành embedding thông qua mô hình ngôn ngữ như CLIP.
+    \item Sử dụng các embedding này trong U-Net thông qua attention layer để hướng dẫn quá trình sinh ảnh.
+\end{itemize}
+
+\section*{Thực nghiệm}
+
+Tất cả các quá trình thực hiện dưới đây đều được em sử dụng máy tính cá nhân với thông số Core i5-12 và NVIDIA RTX 3050 12. Để có thể đảm bảo được tốc độ chạy và khả năng xử lý của model, em đã sử dụng Google Colab để có kết quả tốt nhất.
+
+\subsubsection*{Sinh ảnh mặt nạ}
+
+Sử dụng mô hình SAM được cung cấp bởi META, em có thể gọi ra model (thông qua tải trên local hoặc tải từ trên git) và sử dụng thư viện OpenCV được cung cấp bởi Python để đưa ảnh lên rồi cho vào máy, từ đó sẽ tạo ra các ảnh mặt nạ. Với mỗi ảnh đầu vào sẽ sinh ra các số lượng mặt nạ khác nhau, để giới hạn số lượng ảnh được hiện ra, em sẽ in 20 ảnh đầu tiên.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{Img/10.png}
+        \caption{Ảnh đầu vào}
+        \label{fig:image1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{Img/11.png}
+        \caption{Những ảnh mặt nạ được tạo ra}
+        \label{fig:image2}
+    \end{subfigure}
+    \caption{Tạo mask từ ảnh đầu vào}
+    \label{fig:combined}
+\end{figure}
+
+\subsection{Xóa vật thể}
+
+Với ảnh mặt nạ được nhận từ quá trình sinh ảnh SAM, em có thể đưa vào học máy của LaMa để có thể xóa đi vật thể đó và vẽ lại phần còn thiếu.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Img/12.png}
+    \caption{Xóa vật thể bị vẽ trên hình}
+\end{figure}
+
+\subsection{Thay thế vật thể}
+
+Với sự mạnh mẽ vốn có của Stable Diffusion, runwayml đã kết hợp kết quả training của Stable-Diffusion-v1-2 và training nó với 595,000 ảnh kích thước 512x512. Tất cả thành quả đều được gói gọn trong model \texttt{StableDiffusionPipeline} được đăng trên HuggingFace.
+
+Khác với LaMa được train từ dataset ImageNet, model của Stable Diffusion chỉ được học với các ảnh kích thước 512x512, vì vậy em đã cần phải sử dụng thư viện OpenCV của Python để chỉnh kích cỡ của ảnh về đúng định dạng trước khi cho vào mô hình.
+
+Sử dụng ảnh Mask thứ 6 (hay thứ 5 trong ngôn ngữ máy tính) và câu prompt \texttt{"a summer vibe see-through blue camisole"}, em sẽ có được sản phẩm vẽ lại từ mô hình.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{Img/13.png}
+        \caption{Ảnh Mask được chọn}
+        \label{fig:image1}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{Img/14.png}
+        \caption{Ảnh mới được tạo ra}
+        \label{fig:image2}
+    \end{subfigure}
+    \caption{Tạo ảnh từ mask và promt}
+    \label{fig:combined}
+\end{figure}
+
+
+\subsection{Xây dựng trang web ứng dụng}
+
+Nhằm để người dùng có thể thực hiện việc vẽ lại hình ảnh một cách dễ dàng hơn, em đã tạo ra một trang web đơn giản để có thể chọn ảnh gốc và ảnh nhiễu cũng như prompt để in ra ảnh mới.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Img/15.png}
+    \caption{Trang web với ảnh đầu vào và ảnh mặt nạ được chọn}
+\end{figure}
+\section{Đánh giá kết quả và mở rộng}
+
+\subsection{ Đánh giá kết quả}
+
+\textbf{Ưu điểm:}
+\begin{itemize}
+    \item Ứng dụng hoàn toàn tự động trong việc tạo ra ảnh mặt nạ và cũng đưa ra các lựa chọn tự chọn vùng để tạo ảnh mặt nạ.
+    \item Tiết kiệm thời gian hơn so với việc sử dụng Photoshop hay các phần mềm chỉnh sửa bằng tay, giảm đáng kể thời gian chỉnh sửa nhàm chán.
+    \item Kết quả trả về cũng khá tốt, có thể giúp người dùng sử dụng trực tiếp hoặc sửa với thời gian ngắn hơn rất nhiều.
+\end{itemize}
+
+\textbf{Nhược điểm:}
+\begin{itemize}
+    \item Hiện tại mô hình vẫn còn gặp khó khăn với những bức ảnh thuộc dạng thiếu sáng hoặc các vật nhỏ.
+    \item Vì sử dụng mô hình với các ảnh 512x512 nên khi định dạng lại ảnh, chỉ thực sự hiệu quả với các ảnh vuông có kích thước bằng hoặc lớn hơn. Với những ảnh kích thước khác có thể xảy ra hiện tượng dãn, co hình ảnh.
+    \item Câu prompt vẫn được sử dụng thuần tiếng Anh khiến cho nhiều người Việt khó có thể sử dụng.
+\end{itemize}
+
+\subsection{Hướng mở rộng}
+
+Dựa trên những đánh giá đã trình bày ở phần trước, một số hướng mở rộng tiềm năng nhằm khắc phục các hạn chế hiện tại có thể được đề xuất như sau:
+
+\begin{itemize}
+    \item Đối với hai hạn chế đầu tiên, mặc dù đây là những vấn đề mang tính cố hữu trong xử lý ảnh, có thể xem xét sử dụng các mô hình định dạng hình ảnh (image formatting models) nhằm cải thiện khả năng xử lý trên các ảnh có độ phân giải khác nhau. Sau khi xử lý, ảnh sẽ được khôi phục về kích thước ban đầu. Tuy nhiên, trong quá trình thực nghiệm, hệ thống vẫn gặp phải khó khăn trong việc bảo toàn độ phân giải và chất lượng hình ảnh sau quá trình co giãn, do đó cần nghiên cứu thêm về các kỹ thuật khôi phục ảnh chất lượng cao.
+    
+    \item Đối với hạn chế liên quan đến khả năng hiểu ngôn ngữ tự nhiên tiếng Việt, hiện nay số lượng mô hình embedding hỗ trợ tốt cho tiếng Việt còn hạn chế. Một giải pháp khả thi là sử dụng các mô hình dịch tự động để chuyển văn bản tiếng Việt sang tiếng Anh, sau đó áp dụng các mô hình học máy đã được huấn luyện tốt trên tiếng Anh. Tuy phương pháp này có thể làm tăng thời gian xử lý trong quá trình tạo ảnh, nhưng mức độ gia tăng là không đáng kể so với tiềm năng cải thiện độ chính xác ngữ nghĩa của hệ thống.
+\end{itemize}
+
+\chapter{KẾT LUẬN VÀ KIẾN NGHỊ}
+% \addcontentsline{toc}{chapter}{KẾT LUẬN VÀ KIẾN NGHỊ}
+
+Sau khi thực hiện đề tài, rất nhiều kiến thức về xử lý ảnh và học máy đã được học thêm. Đặc biệt, kiến thức về việc xây dựng một hệ thống thay đổi và thay thế vật thể trong hình ảnh đã được tiếp thu. Các thuật toán trên đã được áp dụng vào bài toán của em. Kỹ năng nghiên cứu và đọc các tài liệu nước ngoài cũng đã được cải thiện. Hiểu và vận dụng, cải tiến linh hoạt những tri thức của những người đi trước.
+
+Kết luận cuối cùng, từ những kiến thức đã được trình bày ở phần trước, với mục tiêu giúp người dùng có khả năng chỉnh sửa hình ảnh theo ý muốn mà không tốn nhiều thời gian, em đã xây dựng ra một mô hình nói chung và một hệ thống website nói riêng. Mặc dù vẫn còn một số lỗi khi thực hiện việc in ảnh, nhưng mô hình đã hoàn toàn có khả năng áp dụng trong thực tế và cũng mở ra nhiều cơ hội để phát triển và cải thiện.
+
+Trong tương lai, để xây dựng một hệ thống tốt hơn, em cần phải xây dựng một bộ dữ liệu chất lượng và đa dạng hơn. Có khả năng hỗ trợ việc thay đổi hình ảnh thông qua câu prompt bằng tiếng Việt khi mà không phải người dùng nào cũng có khả năng cung cấp câu prompt tiếng Anh một cách chính xác và cụ thể.
+
+Các bước của tinh chỉnh hình ảnh sẽ cần được điều chỉnh fine-tuned trên bộ dữ liệu mới để mang lại kết quả tốt hơn. Những bức ảnh với kích thước khác biệt khi được co lại, xử lý và in ra sẽ đem lại một kết quả sắc nét hơn.
+
+Đồng thời, em cũng mong rằng hệ thống của mình có khả năng chỉnh sửa ảnh nhiều hơn như là ghép hình vào ảnh hay tạo ra hình rồi ghép vào thay vì chỉ là thay đổi hay xóa ảnh như hiện tại...
+
+\chapter{TÀI LIỆU THAM KHẢO}
+
+\begin{enumerate}
+    \item Krizhevsky, A., Sutskever, I., \& Hinton, G. E. (2012). ImageNet classification with deep convolutional neural networks. In \textit{Advances in Neural Information Processing Systems} (pp. 1097–1105).
+    
+    \item Ioffe, S., \& Szegedy, C. (2015). Batch normalization: Accelerating deep network training by reducing internal covariate shift. In \textit{Proceedings of the 32nd International Conference on Machine Learning} (pp. 448–456). PMLR.
+    
+    \item Isola, P., Zhu, J.-Y., Zhou, T., \& Efros, A. A. (2017). Image-to-image translation with conditional adversarial networks. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 1125–1134). IEEE.
+    
+    \item Shaham, T. R., Dekel, T., \& Michaeli, T. (2019). SinGAN: Learning a generative model from a single natural image. In \textit{Proceedings of the IEEE/CVF International Conference on Computer Vision} (pp. 4570–4580). IEEE.
+    
+    \item Yi, Z., Zhang, H., Tan, P., \& Gong, M. (2017). DualGAN: Unsupervised dual learning for image-to-image translation. In \textit{Proceedings of the IEEE International Conference on Computer Vision} (pp. 2868–2876). IEEE.
+    
+    \item Ren, S., He, K., Girshick, R. B., \& Sun, J. (2015). Faster R-CNN: Towards real-time object detection with region proposal networks. In \textit{Advances in Neural Information Processing Systems} (pp. 91–99).
+    
+    \item Redmon, J., Divvala, S., Girshick, R., \& Farhadi, A. (2016). You only look once: Unified, real-time object detection. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 779–788). IEEE.
+    
+    \item Girshick, R., Donahue, J., Darrell, T., \& Malik, J. (2014). Rich feature hierarchies for accurate object detection and semantic segmentation. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 580–587). IEEE.
+    
+    \item Redmon, J., \& Farhadi, A. (2018). YOLOv3: An incremental improvement. \textit{arXiv preprint arXiv:1804.02767}.
+    
+    \item Law, H., Deng, J., \& Russakovsky, O. (2019). CenterNet: Keypoint triplets for object detection. In \textit{Proceedings of the IEEE International Conference on Computer Vision} (pp. 6569–6578). IEEE.
+    
+    \item Tian, Z., Shen, C., Chen, H., \& He, T. (2020). PAA: Progressive Anchor-free Object Detection. In \textit{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition} (pp. 10383–10392). CVF.
+    
+    \item \url{https://github.com/facebookresearch/segment-anything}
+    
+    \item Yu, J., Lin, Z., Yang, J., Shen, X., \& Lu, X. (2018). DeepFill v1: Learning image inpainting. In \textit{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition} (pp. 2429–2438). CVF.
+    
+    \item Gu, J., Lee, D., Yoo, S., \& Kim, J. (2020). SC-FEGAN: Face editing generative adversarial network with user's sketch and color. In \textit{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition} (pp. 2231–2240). CVF.
+    
+    \item Nazeri, K., Ng, E., Joseph, T., Qureshi, F. Z., \& Ebrahimi, M. (2019). EdgeConnect: Generative image inpainting with adversarial edge learning. In \textit{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition} (pp. 1199–1208). CVF.
+    
+    \item Gu, S., Yang, J., Liu, Z., Xia, S., \& Li, H. (2019). GANimation: Anatomically Aware Facial Animation from a Single Image. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 7594–7603).
+    
+    \item Mu, Y., Shen, S., He, Z., Bai, X., Wang, Y., Tan, M., \& Yu, N. (2020). DeepFaceDrawing: Deep Generation of Face Images from Sketches. In \textit{European Conference on Computer Vision} (pp. 159–176). Springer.
+    
+    \item Siarohin, A., Lathuilière, S., Tulyakov, S., Ricci, E., \& Sebe, N. (2020). Avatarify: Neural Avatars for Video Conferencing. In \textit{European Conference on Computer Vision Workshops} (pp. 688–705). Springer.
+    
+    \item Li, X., Ren, Y., Jin, X., Lan, C., Wang, X., Zeng, W., Wang, X., \& Chen, Z. (2023). Diffusion Models for Image Restoration and Enhancement – A Comprehensive Survey. \textit{arXiv preprint}.
+    
+    \item Turing, A. M. (1950). Computing Machinery and Intelligence. \textit{Mind}, 59(236), 433–460.
+    
+    \item Samuel, A. L. (1959). Some Studies in Machine Learning Using the Game of Checkers. \textit{IBM Journal of Research and Development}, 3(3), 210–229.
+    
+    \item Rosenblatt, F. (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. \textit{Psychological Review}, 65(6), 386–408.
+    
+    \item Werbos, P. J. (1974). Beyond Regression: New Tools for Prediction and Analysis in the Behavioral Sciences. \textit{Ph.D. thesis}, Harvard University.
+    
+    \item Krizhevsky, A., Sutskever, I., \& Hinton, G. E. (2012). ImageNet Classification with Deep Convolutional Neural Networks. In \textit{Advances in Neural Information Processing Systems} (pp. 1097–1105).
+    
+    \item Devlin, J., Chang, M.-W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding. In \textit{NAACL-HLT}.
+    
+    \item Radford, A., Narasimhan, K., Salimans, T., \& Sutskever, I. (2018). Improving Language Understanding by Generative Pre-Training. \textit{OpenAI Technical Report}.
+    
+    \item Silver, D., et al. (2016). Mastering the game of Go with deep neural networks and tree search. \textit{Nature}, 529(7587), 484–489.
+    
+    \item Simonyan, K., \& Zisserman, A. (2014). Very Deep Convolutional Networks for Large-Scale Image Recognition. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 240–247).
+    
+    \item He, K., Zhang, X., Ren, S., \& Sun, J. (2016). Deep Residual Learning for Image Recognition. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 770–778).
+    
+    \item Szegedy, C., et al. (2015). Going Deeper with Convolutions. In \textit{Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition} (pp. 1–9).
+    
+    \item Brock, A., Donahue, J., \& Simonyan, K. (2019). Large Scale GAN Training for High Fidelity Natural Image Synthesis. In \textit{ICLR}.
+    
+    \item van den Oord, A., Vinyals, O., \& Kavukcuoglu, K. (2019). VQ-VAE-2: Improved Discrete Latent Representations for Variational Autoencoders. In \textit{NeurIPS}.
+    
+    \item Mildenhall, B., et al. (2020). NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis. In \textit{ECCV}.
+    
+    \item \url{https://openai.com/index/image-gpt/}
+    
+    \item Lai, W.-S., Huang, J.-B., Ahuja, N., \& Yang, M.-H. (2019). Super-Resolution via Repeated Refinement. In \textit{CVPR}.
+    
+    \item \url{https://github.com/advimman/lama}
+    
+    \item \url{https://huggingface.co/runwayml/stable-diffusion-v1-5}
+\end{enumerate}
+
+\end{document}
+
